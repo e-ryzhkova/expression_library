@@ -43,5 +43,30 @@ int infix_to_postfix(const char* infix, char* postfix, size_t postfix_len,
 
 double evaluate_postfix(const char* postfix, char* error_msg, long* num_operations);
 
+/**
+ * ЗАДАЧА 1.4: Вычисление инфиксного выражения напрямую (без явного построения постфикса)
+ *
+ * @param expression Строка с инфиксным выражением
+ * @param result Результат
+ * @return 0 при успехе, -1 при ошибке
+ */
+int evaluate_infix(const char *expression, double *result,
+                   char *error_msg, long *num_operations);
+#define MAX_STACK 100
+typedef struct {
+  double values[MAX_STACK];
+  int top;
+} ValueStack;
+
+typedef struct {
+  char ops[MAX_STACK];
+  int top;
+} OpStack;
+void push_value(ValueStack *vs, double val);
+double pop_value(ValueStack *vs);
+void push_op(OpStack *os, char op);
+char pop_op(OpStack *os);
+int precedence(char op);
+double apply_op(double a, double b, char op, long *num_operations);
 
 #endif
