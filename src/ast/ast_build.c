@@ -53,6 +53,29 @@ char* my_strdup(const char* s) {
     return copy;
 }
 
+void free_ast(ExprNode* node) {
+    switch (node->type) {
+        case NODE_NUMBER:
+            break;
+        case NODE_VARIABLE:
+            free_ast(node->data.var_name);
+            break;
+        case NODE_UNARY:
+            free_ast(node->data.unary.operand);
+            break;
+        case NODE_BINARY:
+            free_ast(node->data.binary.left);
+            free_ast(node->data.binary.right);
+            break;
+        case NODE_FUNCTION:
+            free_ast(node->data.function.func_name);
+            free_ast(node->data.function.args[0]);
+            free_ast(node->data.function.args);
+            break;
+    }
+}
+
+
 
 ExprNode* build_ast_from_postfix(const char* postfix, char* error_msg) {
     int i = -1;

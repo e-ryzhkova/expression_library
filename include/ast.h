@@ -36,5 +36,9 @@ ExprNode* create_var_node(char* var);
 ExprNode* create_bin_node(char bin, ExprNode* left, ExprNode* right);
 ExprNode* create_un_node(char un, ExprNode* operand);
 ExprNode* create_func_node(char* func_name, int arg_count, ExprNode** args);
+void free_ast(ExprNode* node);
+
+ExprNode* build_ast_from_postfix(const char* postfix, char* error_msg);
+int evaluate_ast(const ExprNode* node, const struct { char* name; double value; }* var_table, double* result, char* error_msg);
 
 #endif
