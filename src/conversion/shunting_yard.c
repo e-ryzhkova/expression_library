@@ -192,22 +192,22 @@ int infix_to_postfix(const char *infix, char *postfix, size_t postfix_len,
   return 0;
 }
 
-int main() {
-  char infix[] = "3+4*2/(1-5)";
-  char postfix[100];
-  char error_msg[100];
-  long num_operations = 0;
-
-  printf("infinix: %s\n", infix);
-
-  int result = infix_to_postfix(infix, postfix, sizeof(postfix), error_msg, &num_operations);
-
-  if (result == 0) {
-    printf("Postfix: %s\n", postfix);
-    printf("Operation count: %ld\n", num_operations);
-  } else {
-    printf("Ошибка: %s\n", error_msg);
-  }
-
-  return 0;
-}
+// int main() {
+//   char infix[] = "3+4*2/(1-5)";
+//   char postfix[100];
+//   char error_msg[100];
+//   long num_operations = 0;
+//
+//   printf("infinix: %s\n", infix);
+//
+//   int result = infix_to_postfix(infix, postfix, sizeof(postfix), error_msg, &num_operations);
+//
+//   if (result == 0) {
+//     printf("Postfix: %s\n", postfix);
+//     printf("Operation count: %ld\n", num_operations);
+//   } else {
+//     printf("Ошибка: %s\n", error_msg);
+//   }
+//
+//   return 0;
+// }

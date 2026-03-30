@@ -190,76 +190,76 @@ int evaluate_postfix(const char *postfix, double *result,
 }
 
 // Пример использования и тестирования
-int main() {
-    // Тест 1: простое выражение
-    char postfix1[] = "3 4 +";
-    double result1;
-    long ops1;
-    char error1[100];
-
-    printf("Postfix: %s\n", postfix1);
-    if (evaluate_postfix(postfix1, &result1, error1, &ops1) == 0) {
-        printf("Result: %.2f\n", result1);
-        printf("Operation counter: %ld\n\n", ops1);
-    } else {
-        printf("Error: %s\n\n", error1);
-    }
-
-    // Тест 2: сложное выражение
-    char postfix2[] = "3 4 2 * 1 5 - / +";
-    double result2;
-    long ops2;
-    char error2[100];
-
-    printf("Postfix: %s\n", postfix2);
-    if (evaluate_postfix(postfix2, &result2, error2, &ops2) == 0) {
-        printf("Result: %.2f\n", result2);
-        printf("Operation counter: %ld\n\n", ops2);
-    } else {
-        printf("Error: %s\n\n", error2);
-    }
-
-    // Тест 3: выражение со степенью
-    char postfix3[] = "2 3 ^";
-    double result3;
-    long ops3;
-    char error3[100];
-
-    printf("Postfix: %s\n", postfix3);
-    if (evaluate_postfix(postfix3, &result3, error3, &ops3) == 0) {
-        printf("Result: %.2f\n", result3);
-        printf("Operation counter: %ld\n\n", ops3);
-    } else {
-        printf("Error: %s\n\n", error3);
-    }
-
-    // Тест 4: деление на ноль
-    char postfix4[] = "5 0 /";
-    double result4;
-    long ops4;
-    char error4[100];
-
-    printf("Postfix: %s\n", postfix4);
-    if (evaluate_postfix(postfix4, &result4, error4, &ops4) == 0) {
-        printf("Result: %.2f\n", result4);
-        printf("Operation counter: %ld\n\n", ops4);
-    } else {
-        printf("Error: %s\n\n", error4);
-    }
-
-    // Тест 5: недостаточно операндов
-    char postfix5[] = "5 +";
-    double result5;
-    long ops5;
-    char error5[100];
-
-    printf("Postfix: %s\n", postfix5);
-    if (evaluate_postfix(postfix5, &result5, error5, &ops5) == 0) {
-        printf("Result: %.2f\n", result5);
-        printf("Operation counter: %ld\n\n", ops5);
-    } else {
-        printf("Error: %s\n\n", error5);
-    }
-
-    return 0;
-}
+// int main() {
+//     // Тест 1: простое выражение
+//     char postfix1[] = "3 4 +";
+//     double result1;
+//     long ops1;
+//     char error1[100];
+//
+//     printf("Postfix: %s\n", postfix1);
+//     if (evaluate_postfix(postfix1, &result1, error1, &ops1) == 0) {
+//         printf("Result: %.2f\n", result1);
+//         printf("Operation counter: %ld\n\n", ops1);
+//     } else {
+//         printf("Error: %s\n\n", error1);
+//     }
+//
+//     // Тест 2: сложное выражение
+//     char postfix2[] = "3 4 2 * 1 5 - / +";
+//     double result2;
+//     long ops2;
+//     char error2[100];
+//
+//     printf("Postfix: %s\n", postfix2);
+//     if (evaluate_postfix(postfix2, &result2, error2, &ops2) == 0) {
+//         printf("Result: %.2f\n", result2);
+//         printf("Operation counter: %ld\n\n", ops2);
+//     } else {
+//         printf("Error: %s\n\n", error2);
+//     }
+//
+//     // Тест 3: выражение со степенью
+//     char postfix3[] = "2 3 ^";
+//     double result3;
+//     long ops3;
+//     char error3[100];
+//
+//     printf("Postfix: %s\n", postfix3);
+//     if (evaluate_postfix(postfix3, &result3, error3, &ops3) == 0) {
+//         printf("Result: %.2f\n", result3);
+//         printf("Operation counter: %ld\n\n", ops3);
+//     } else {
+//         printf("Error: %s\n\n", error3);
+//     }
+//
+//     // Тест 4: деление на ноль
+//     char postfix4[] = "5 0 /";
+//     double result4;
+//     long ops4;
+//     char error4[100];
+//
+//     printf("Postfix: %s\n", postfix4);
+//     if (evaluate_postfix(postfix4, &result4, error4, &ops4) == 0) {
+//         printf("Result: %.2f\n", result4);
+//         printf("Operation counter: %ld\n\n", ops4);
+//     } else {
+//         printf("Error: %s\n\n", error4);
+//     }
+//
+//     // Тест 5: недостаточно операндов
+//     char postfix5[] = "5 +";
+//     double result5;
+//     long ops5;
+//     char error5[100];
+//
+//     printf("Postfix: %s\n", postfix5);
+//     if (evaluate_postfix(postfix5, &result5, error5, &ops5) == 0) {
+//         printf("Result: %.2f\n", result5);
+//         printf("Operation counter: %ld\n\n", ops5);
+//     } else {
+//         printf("Error: %s\n\n", error5);
+//     }
+//
+//     return 0;
+// }
