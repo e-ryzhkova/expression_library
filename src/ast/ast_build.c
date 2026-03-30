@@ -1,5 +1,17 @@
 #include "ast.h"
 
+ExprNode* create_func_node(char* func_name, int arg_count, 
+    ExprNode** args) {
+    ExprNode* node = malloc(sizeof(ExprNode));
+    node->type = NODE_FUNCTION;
+    node->data.function.func_name = func_name;
+    node->data.function.arg_count = arg_count;
+    node->data.function.args = args;
+    return node;
+}
+
+
+
 ExprNode* create_bin_node(char bin, ExprNode* left, 
     ExprNode* right) {
     ExprNode* node = malloc(sizeof(ExprNode));
@@ -34,10 +46,18 @@ ExprNode* create_num_node(double value) {
 }
 
 
+char* my_strdup(const char* s) {
+    int len = strlen(s) + 1;
+    char* copy = (char*)malloc(len*sizeof(char));
+    strcpy(copy, s);
+    return copy;
+}
+
+
 ExprNode* build_ast_from_postfix(const char* postfix, char* error_msg) {
     int i = -1;
-    char* copy = strdup(postfix);
-    ExprNode** stack = (ExprNode**)malloc(2 * strlen(copy) * sizeof(ExprNode*));
+    char* copy = my_strdup(postfix);
+    ExprNode** stack = (ExprNode**)malloc(2*strlen(copy) * sizeof(ExprNode*));
     char* token = strtok(copy, " ");
     while (token != NULL) {
         char* check;
@@ -47,30 +67,30 @@ ExprNode* build_ast_from_postfix(const char* postfix, char* error_msg) {
             stack[i] = create_num_node(num);
         }
         else if (token == check) {
-            if ((!strcmp(check, "sin") || !strcmp(check, "cos") ||
-                !strcmp(check, "sqrt") || !strcmp(check, "ln")) && (i >= 1)) {
+            if ((!strcmp(token, "sin") || !strcmp(token, "cos") ||
+                !strcmp(token, "sqrt") || !strcmp(token, "ln")) && (i >= 0)) {
                 ExprNode** args = (ExprNode**)malloc(sizeof(ExprNode*));
                 args[0] = stack[i];
-                stack[i] = create_func_node(check, 1, args);
+                stack[i] = create_func_node(my_strdup(token), 1, args);
             }
             else {
-                if (strchr("+-*/^", check[0]) && (i >= 1)) {
+                if (strchr("+-*/^", token[0]) && (i >= 1)) {
                     i--;
-                    stack[i] = create_bin_node(check[0], stack[i], stack[i + 1]);
+                    stack[i] = create_bin_node(token[0], stack[i], stack[i + 1]);
                 }
-                else if ((check[0] == 'n' || check[0] == 'p') && (i >= 0))
-                    stack[i] = create_un_node(check[0], stack[i]);
+                else if ((token[0] == 'n' || token[0] == 'p') && (i >= 0))
+                    stack[i] = create_un_node(token[0], stack[i]);
                 else {
                     int valid = 1;
-                    for (int j = 0; check[j]; j++)
-                        if (!((check[j] >= 'a' && check[j] <= 'z')
-                            || (check[j] >= 'A' && check[j] <= 'Z'))) {
+                    for (int j = 0; token[j]; j++)
+                        if (!((token[j] >= 'a' && token[j] <= 'z')
+                            || (token[j] >= 'A' && token[j] <= 'Z'))) {
                             valid = 0;
                             break;
                         }
                     if (valid) {
                         i++;
-                        stack[i] = create_var_node(check);
+                        stack[i] = create_var_node(my_strdup(token));
                     }
                     else {
                         strcpy(error_msg, "incorrect entry");
@@ -99,3 +119,8 @@ ExprNode* build_ast_from_postfix(const char* postfix, char* error_msg) {
     free(copy);
     return root;
 }
+
+
+
+
+

@@ -1,9 +1,10 @@
 #ifndef AST_H
 #define AST_H
-
+#define _CRT_SECURE_NO_WARNINGS
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 
 typedef enum { NODE_NUMBER, NODE_VARIABLE, NODE_UNARY, NODE_BINARY, NODE_FUNCTION } NodeType;
 
@@ -29,7 +30,7 @@ typedef struct ExprNode {
     } data;
 } ExprNode;
 
-
+ExprNode* build_ast_from_postfix(const char* postfix, char* error_msg);
 ExprNode* create_num_node(double value);
 ExprNode* create_var_node(char* var);
 ExprNode* create_bin_node(char bin, ExprNode* left, ExprNode* right);
