@@ -44,6 +44,15 @@ int infix_to_postfix(const char* infix, char* postfix, size_t postfix_len,
 double evaluate_postfix(const char* postfix, char* error_msg, long* num_operations);
 
 /**
+ * ЗАДАЧА 1.3: Проверка баланса скобок и базовой структуры выражения
+ *
+ * @param expression Строка с выражением
+ * @param error_msg Буфер для сообщения об ошибке (не менее 256 байт)
+ * @return true если скобки сбалансированы и нет заведомо неверных конструкций
+ */
+bool check_expression_syntax(const char *expression, char *error_msg);
+
+/**
  * ЗАДАЧА 1.4: Вычисление инфиксного выражения напрямую (без явного построения постфикса)
  *
  * @param expression Строка с инфиксным выражением
