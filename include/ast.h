@@ -30,7 +30,11 @@ typedef struct ExprNode {
     } data;
 } ExprNode;
 
-ExprNode* build_ast_from_postfix(const char* postfix, char* error_msg);
+struct VARS {
+    char* name;
+    double value;
+};
+
 ExprNode* create_num_node(double value);
 ExprNode* create_var_node(char* var);
 ExprNode* create_bin_node(char bin, ExprNode* left, ExprNode* right);
@@ -39,6 +43,18 @@ ExprNode* create_func_node(char* func_name, int arg_count, ExprNode** args);
 void free_ast(ExprNode* node);
 
 ExprNode* build_ast_from_postfix(const char* postfix, char* error_msg);
-int evaluate_ast(const ExprNode* node, const struct { char* name; double value; }* var_table, double* result, char* error_msg);
+int evaluate_ast(const ExprNode* node, const struct VARS *var_table, double* result, char* error_msg);
+char* my_strdup(const char* str);
+
+const struct VARS vars[];
+double post_order(const ExprNode* node,
+    const struct VARS *var_table,
+    char* error_msg);
+int evaluate_ast(const ExprNode* node,
+    const struct VARS *var_table,
+    double* result, char* error_msg);
+
+int pre_recursive(const ExprNode* node, char* output, size_t size, int pos);
+int ast_to_prefix(const ExprNode* node, char* output, size_t size);
 
 #endif
