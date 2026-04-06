@@ -1,6 +1,5 @@
 #include "ast.h"
 
-
 const struct VARS vars[] = {
     {"x", 3.14},
     {"y", 2.71},
@@ -13,7 +12,7 @@ double post_order(const ExprNode* node,
     char* error_msg) {
 
     if (error_msg[0] != '\0')
-        return; // корректно?
+        return 0.0;
 
     double num = node->data.number;
     if (node->type == NODE_NUMBER)
@@ -24,7 +23,7 @@ double post_order(const ExprNode* node,
             if (!(strcmp(var_table[i].name, node->data.var_name)))
                 return var_table[i].value;
         strcpy(error_msg, "unknown variable");
-        return; // корректно?
+        return 0.0;
     }
 
     else if (node->type == NODE_BINARY) {
@@ -44,7 +43,7 @@ double post_order(const ExprNode* node,
                 num = left_value / right_value;
             else {
                 strcpy(error_msg, "division by zero");
-                return; // корректно?
+                return 0.0; 
             }
         }
         
@@ -80,14 +79,14 @@ double post_order(const ExprNode* node,
                 num = sqrt(arg1);
             else {
                 strcpy(error_msg, "negative argument of the square root");
-                return; // корректно?
+                return 0.0;
             }
         else if (!strcmp(func_name, "ln"))
             if (arg1 > 0)
                 num = log(arg1);
             else {
                 strcpy(error_msg, "non-positive argument of the logarithm");
-                return; // корректно?
+                return 0.0;
             }
         else if (!strcmp(func_name, "pow")) {
             double arg2 = post_order(args[1], var_table, error_msg);
