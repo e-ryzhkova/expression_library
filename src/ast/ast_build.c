@@ -68,6 +68,7 @@ void free_ast(ExprNode* node) {
     }
 }
 
+
 char* my_strdup(const char* str) {
 
     int len = strlen(str) + 1;
@@ -76,6 +77,8 @@ char* my_strdup(const char* str) {
     strcpy(copy, str);
     return copy;
 }
+
+
 
 ExprNode* build_ast_from_postfix(const char* postfix, char* error_msg) {
     int arg_count = 1;
@@ -103,7 +106,7 @@ ExprNode* build_ast_from_postfix(const char* postfix, char* error_msg) {
                 stack[i] = create_func_node(my_strdup(token), arg_count, args);
             }
 
-            else if (!strcmp(token, "pow")) {
+            else if (!strcmp(token, "pow") && (i >= 0)) {
                 arg_count = 2;
                 ExprNode** args = (ExprNode**)malloc(arg_count * sizeof(ExprNode*));
                 for (int j = arg_count-1; j >= 0; j--) {
@@ -114,7 +117,8 @@ ExprNode* build_ast_from_postfix(const char* postfix, char* error_msg) {
                 stack[i] = create_func_node(my_strdup(token), arg_count, args);
             }
 
-            else {
+            else if (!(!strcmp(token, "sin") || !strcmp(token, "cos") ||
+                !strcmp(token, "sqrt") || !strcmp(token, "ln") || (!strcmp(token, "pow")))) {
                 if (strchr("+-*/^", token[0]) && (i >= 1)) {
                     i--;
                     stack[i] = create_bin_node(token[0], stack[i], stack[i + 1]);
@@ -143,14 +147,6 @@ ExprNode* build_ast_from_postfix(const char* postfix, char* error_msg) {
                     }
                 }
             }
-        }
-        else {
-            strcpy(error_msg, "incorrect entry");
-            for (int j = 0; j < i; j++)
-                free_ast(stack[j]);
-            free(stack);
-            free(copy);
-            return NULL;
         }
         token = strtok(NULL, " ");
     }
