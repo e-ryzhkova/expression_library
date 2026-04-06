@@ -22,7 +22,7 @@ ExprNode* simplify(ExprNode* node) {
 
             if (op == '+'){
                 node->data.unary.operand = NULL; 
-                free_node(node);
+                free_ast(node);
                 return child;
             }
 
@@ -31,10 +31,10 @@ ExprNode* simplify(ExprNode* node) {
 
                 ExprNode *new_node = create_num_node(-value);
 
-                free_node(child);
+                free_ast(child);
 
                 node->data.unary.operand = NULL; 
-                free_node(node);
+                free_ast(node);
 
                 return new_node;
             }
@@ -42,10 +42,10 @@ ExprNode* simplify(ExprNode* node) {
             if (op == '-' && child->type == NODE_UNARY && child->data.unary.op == '-'){
                 ExprNode *grand = child->data.unary.operand;
 
-                free_node(child);
+                free_ast(child);
 
                 node->data.unary.operand = NULL; 
-                free_node(node);
+                free_ast(node);
 
                 return grand;
             }
@@ -80,7 +80,7 @@ ExprNode* simplify(ExprNode* node) {
                 }
 
                 ExprNode * new_node = create_num_node(result);
-                free_node(node);
+                free_ast(node);
 
                 return new_node;
             }
@@ -93,7 +93,7 @@ ExprNode* simplify(ExprNode* node) {
                     node->data.binary.left = NULL;
                     node->data.binary.right = NULL;
 
-                    free_node(node);
+                    free_ast(node);
                     return temp;   
                 }  
 
@@ -103,7 +103,7 @@ ExprNode* simplify(ExprNode* node) {
                     node->data.binary.right = NULL;
                     node->data.binary.left = NULL;
 
-                    free_node(node);
+                    free_ast(node);
                     return temp;   
                 }
             }
@@ -116,7 +116,7 @@ ExprNode* simplify(ExprNode* node) {
                     node->data.binary.right = NULL;
                     node->data.binary.left = NULL;
 
-                    free_node(node);
+                    free_ast(node);
                     return temp;
                 }
                 
@@ -126,7 +126,7 @@ ExprNode* simplify(ExprNode* node) {
                     node->data.binary.right = NULL;
                     node->data.binary.left = NULL;
 
-                    free_node(node);
+                    free_ast(node);
                     return temp;
                 }
             }
@@ -139,7 +139,7 @@ ExprNode* simplify(ExprNode* node) {
                     node->data.binary.left = NULL;
                     node->data.binary.right = NULL;
 
-                    free_node(node);
+                    free_ast(node);
                     return temp;
                 }
         
@@ -149,7 +149,7 @@ ExprNode* simplify(ExprNode* node) {
                     node->data.binary.left = NULL;
                     node->data.binary.right = NULL;
 
-                    free_node(node);
+                    free_ast(node);
                     return temp;
                 }
 
@@ -159,7 +159,7 @@ ExprNode* simplify(ExprNode* node) {
                     node->data.binary.left = NULL;
                     node->data.binary.right = NULL;
 
-                    free_node(node);
+                    free_ast(node);
                     return temp;
                 }
 
@@ -169,7 +169,7 @@ ExprNode* simplify(ExprNode* node) {
                     node->data.binary.left = NULL;
                     node->data.binary.right = NULL;
 
-                    free_node(node);
+                    free_ast(node);
                     return temp;
                 }
             }
@@ -182,7 +182,7 @@ ExprNode* simplify(ExprNode* node) {
                     node->data.binary.left = NULL;
                     node->data.binary.right = NULL;
 
-                    free_node(node);
+                    free_ast(node);
                     return temp;
                 }
 
@@ -192,7 +192,7 @@ ExprNode* simplify(ExprNode* node) {
                     node->data.binary.left = NULL;
                     node->data.binary.right = NULL;
 
-                    free_node(node);
+                    free_ast(node);
                     return temp;
                 }       
             }
@@ -205,7 +205,7 @@ ExprNode* simplify(ExprNode* node) {
                     node->data.binary.left = NULL;
                     node->data.binary.right = NULL;
 
-                    free_node(node);
+                    free_ast(node);
                     return temp;
                 }
 
@@ -215,7 +215,7 @@ ExprNode* simplify(ExprNode* node) {
                     node->data.binary.left = NULL;
                     node->data.binary.right = NULL;
 
-                    free_node(node);
+                    free_ast(node);
                     return temp;
                 }
 
@@ -225,7 +225,7 @@ ExprNode* simplify(ExprNode* node) {
                     node->data.binary.left = NULL;
                     node->data.binary.right = NULL;
 
-                    free_node(node);
+                    free_ast(node);
                     return temp;
                 }
 
@@ -235,7 +235,7 @@ ExprNode* simplify(ExprNode* node) {
                     node->data.binary.left = NULL;
                     node->data.binary.right = NULL;
 
-                    free_node(node);
+                    free_ast(node);
                     return temp;
                 }
             }
@@ -279,7 +279,7 @@ ExprNode* simplify(ExprNode* node) {
             for (int i = 0; i < n; i++)
                 node->data.function.args[i] = NULL;
 
-            free_node(node);
+            free_ast(node);
             return new_node;
         }  
     }
