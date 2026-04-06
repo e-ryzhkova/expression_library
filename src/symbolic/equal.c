@@ -1,5 +1,4 @@
-#include "ast.h"
-#include <stdbool.h>
+#include "symbolic.h"
 #include <string.h>
 
 bool expression_equal(ExprNode *a, ExprNode *b) {
