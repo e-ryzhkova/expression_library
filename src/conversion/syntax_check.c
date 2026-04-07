@@ -1,14 +1,5 @@
-#include <string.h>
-#include <ctype.h>
-#include <sec_api/stdio_s.h>
+#include "conversion.h"
 
-/**
- * ЗАДАЧА 1.3: Проверка баланса скобок и базовой структуры выражения
- *
- * @param expression Строка с выражением
- * @param error_msg Буфер для сообщения об ошибке (не менее 256 байт)
- * @return 1 если скобки сбалансированы и нет заведомо неверных конструкций
- */
 int check_expression_syntax(const char *expression, char *error_msg) {
     if (expression == NULL || error_msg == NULL) {
         return 0;
