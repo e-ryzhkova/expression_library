@@ -10,8 +10,6 @@ ExprNode* create_func_node(char* func_name, int arg_count,
     return node;
 }
 
-
-
 ExprNode* create_bin_node(char bin, ExprNode* left, 
     ExprNode* right) {
     ExprNode* node = malloc(sizeof(ExprNode));
@@ -21,7 +19,6 @@ ExprNode* create_bin_node(char bin, ExprNode* left,
     node->data.binary.right = right;
     return node;
 }
-
 
 ExprNode* create_un_node(char un, ExprNode* operand) {
     ExprNode* node = malloc(sizeof(ExprNode));
@@ -73,10 +70,8 @@ void free_ast(ExprNode* node) {
 
 
 char* my_strdup(const char* str) {
-
     int len = strlen(str) + 1;
     char* copy = (char*)malloc(len*sizeof(char));
-
     strcpy(copy, str);
     return copy;
 }
@@ -140,7 +135,7 @@ ExprNode* build_ast_from_postfix(const char* postfix, char* error_msg) {
                     return NULL;
                 }
             }
-            else if (strchr("+-*/^", token[0]) && (i >= 1)) {
+            else if (strchr("+-*/^", token[0]) && strlen(token) == 1 && (i >= 1)) {
                     i--;
                     stack[i] = create_bin_node(token[0], stack[i], stack[i + 1]);
                 }
@@ -187,8 +182,6 @@ ExprNode* build_ast_from_postfix(const char* postfix, char* error_msg) {
         free(copy);
         return NULL;
     }
-    
-
 }
 
 

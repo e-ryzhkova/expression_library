@@ -1,7 +1,7 @@
 #include "ast.h"
 
 
-int main() {
+int main(void) {
     double res;
     char output[45] = "";
     char error_msg[256] = "";
@@ -42,6 +42,7 @@ int main() {
     "sin",
     "+",
     "1 2 + +",
+    "1 2 +=",
     "1 0 /",
     "x y + *",
     "pow",
@@ -52,7 +53,7 @@ int main() {
     "u",
     "1 1 1 1 + + + n n"
     };
-    for (int i = 0; i < 45; i++) {
+    for (int i = 0; i < 46; i++) {
         error_msg[0] = '\0';
         const char* postfix = tests[i];
         printf("%s\n\n", postfix);

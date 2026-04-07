@@ -51,8 +51,6 @@ double post_order(const ExprNode* node,
             num = pow(left_value, right_value);
         return num;
 
-
-
     }
     else if (node->type == NODE_UNARY) {
         char un = node->data.unary.op;
