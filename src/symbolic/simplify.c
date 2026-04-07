@@ -1,7 +1,4 @@
-#include "ast.h"
 #include "symbolic.h"
-#include <string.h>
-#include <stdlib.h>
 
 ExprNode* simplify(ExprNode* node) {
     if (node == NULL)
