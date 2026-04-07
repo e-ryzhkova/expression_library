@@ -1,9 +1,4 @@
-#include <stdio.h>
-#include <stdbool.h>
-#include <ctype.h>
-#include <string.h>
-#include "../../include/conversion.h"
-
+#include "conversion.h"
 
 void init_stack(Stack *s) {
   s->top = -1;
@@ -43,11 +38,11 @@ int get_priority(char op) {
 
 int get_associative(char op) {
   switch (op) {
-    case '+': return 0; // левая ассоциативность
+    case '+': return 0; 
     case '-': return 0;
     case '*': return 0;
     case '/': return 0;
-    case '^': return 1; // правая ассоциативность
+    case '^': return 1; 
     default: return 0;
   }
 }
@@ -79,37 +74,33 @@ int infix_to_postfix(const char *infix, char *postfix, size_t postfix_len,
   for (int i = 0; infix[i] != '\0'; i++) {
     char token = infix[i];
 
-    // Пропускаем пробелы
     if (token == ' ') continue;
 
-    // Если это цифра (целое число)
     if (isdigit(token)) {
-      // Записываем все цифры числа
       while (isdigit(infix[i]) || infix[i] == '.') {
         if (!append_char(postfix, postfix_len, infix[i], &postfix_pos)) {
-          if (error_msg) sprintf(error_msg, "Буфер постфиксной строки переполнен");
+          if (error_msg) sprintf(error_msg, "The postfix line buffer is full");
           return -1;
         }
         i++;
         if (infix[i] == '\0') break;
       }
-      i--; // Возвращаемся на последний обработанный символ
+      i--; 
       if (!append_char(postfix, postfix_len, ' ', &postfix_pos)) {
-        if (error_msg) sprintf(error_msg, "Буфер постфиксной строки переполнен");
+        if (error_msg) sprintf(error_msg, "The postfix line buffer is full");
         return -1;
       }
       continue;
     }
 
-    // Операторы
     if (token == '+' || token == '-' || token == '*' || token == '/' || token == '^') {
-      // Обработка унарного минуса/плюса
+      
       if ((token == '-' || token == '+') &&
           (i == 0 || infix[i - 1] == '(' || strchr("+-*/^", infix[i - 1]))) {
-        // Унарный оператор - обрабатываем как отдельный токен
+        
         if (!append_char(postfix, postfix_len, '0', &postfix_pos) ||
             !append_char(postfix, postfix_len, ' ', &postfix_pos)) {
-          if (error_msg) sprintf(error_msg, "Буфер переполнен");
+          if (error_msg) sprintf(error_msg, "The buffer is full");
           return -1;
         }
       }
@@ -123,7 +114,7 @@ int infix_to_postfix(const char *infix, char *postfix, size_t postfix_len,
           pop(&stack);
           if (!append_char(postfix, postfix_len, top, &postfix_pos) ||
               !append_char(postfix, postfix_len, ' ', &postfix_pos)) {
-            if (error_msg) sprintf(error_msg, "Буфер переполнен");
+            if (error_msg) sprintf(error_msg, "The buffer is full");
             return -1;
           }
           (*num_operations)++;
@@ -135,56 +126,54 @@ int infix_to_postfix(const char *infix, char *postfix, size_t postfix_len,
       continue;
     }
 
-    // Открывающая скобка
     if (token == '(') {
       push(&stack, token);
       continue;
     }
 
-    // Закрывающая скобка
     if (token == ')') {
       while (!is_empty(&stack) && peek(&stack) != '(') {
         char op = pop(&stack);
         if (!append_char(postfix, postfix_len, op, &postfix_pos) ||
             !append_char(postfix, postfix_len, ' ', &postfix_pos)) {
-          if (error_msg) sprintf(error_msg, "Буфер переполнен");
+          if (error_msg) sprintf(error_msg, "The buffer is full");
           return -1;
         }
         (*num_operations)++;
       }
 
       if (is_empty(&stack)) {
-        if (error_msg) sprintf(error_msg, "Непарная закрывающая скобка");
+        if (error_msg) sprintf(error_msg, "An unpaired closing bracket");
         return -1;
       }
 
-      pop(&stack); // Удаляем '('
+      pop(&stack); 
       continue;
     }
 
-    // Неизвестный символ
+    
     if (error_msg) {
-      sprintf(error_msg, "Неизвестный символ: %c", token);
+      sprintf(error_msg, "Unknown symbol: %c", token);
     }
     return -1;
   }
 
-  // Выгружаем оставшиеся операторы из стека
+  
   while (!is_empty(&stack)) {
     char op = pop(&stack);
     if (op == '(') {
-      if (error_msg) sprintf(error_msg, "Непарная открывающая скобка");
+      if (error_msg) sprintf(error_msg, "An unpaired closing bracket");
       return -1;
     }
     if (!append_char(postfix, postfix_len, op, &postfix_pos) ||
         !append_char(postfix, postfix_len, ' ', &postfix_pos)) {
-      if (error_msg) sprintf(error_msg, "Буфер переполнен");
+      if (error_msg) sprintf(error_msg, "The buffer is full");
       return -1;
     }
     (*num_operations)++;
   }
 
-  // Удаляем последний пробел, если он есть
+  
   if (postfix_pos > 0 && postfix[postfix_pos - 1] == ' ') {
     postfix[postfix_pos - 1] = '\0';
   }
@@ -192,8 +181,3 @@ int infix_to_postfix(const char *infix, char *postfix, size_t postfix_len,
   return 0;
 }
 
-// int main() {
-
-//
-//   return 0;
-// }
