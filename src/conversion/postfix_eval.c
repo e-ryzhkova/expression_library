@@ -1,11 +1,6 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
-#include <math.h>
-#include <stdbool.h>
+#include "conversion.h"
 
-// Структура стека для double значений
+
 typedef struct {
     double items[100];
     int top;
@@ -41,14 +36,13 @@ double peek_dstack(DoubleStack *s) {
     return 0.0;
 }
 
-// Проверка, является ли строка оператором
+
 bool is_operator(const char *token) {
     return (strcmp(token, "+") == 0 || strcmp(token, "-") == 0 ||
             strcmp(token, "*") == 0 || strcmp(token, "/") == 0 ||
             strcmp(token, "^") == 0);
 }
 
-// Выполнение бинарной операции
 bool apply_operator(const char *op, double a, double b, double *result, char *error_msg) {
     if (strcmp(op, "+") == 0) {
         *result = a + b;
@@ -86,22 +80,22 @@ int evaluate_postfix(const char *postfix, double *result,
         error_msg[0] = '\0';
     }
 
-    // Создаем копию строки для разбора
+    
     char buffer[1024];
     strncpy(buffer, postfix, sizeof(buffer) - 1);
     buffer[sizeof(buffer) - 1] = '\0';
 
-    // Разбиваем строку на токены по пробелам
+    
     char *token = strtok(buffer, " \t\n");
 
     while (token != NULL) {
-        // Пропускаем пустые токены
+       
         if (strlen(token) == 0) {
             token = strtok(NULL, " \t\n");
             continue;
         }
 
-        // Проверяем, является ли токен числом
+       
         bool is_number = true;
         bool has_decimal_point = false;
 
@@ -113,7 +107,7 @@ int evaluate_postfix(const char *postfix, double *result,
                 }
                 has_decimal_point = true;
             } else if (token[i] == '-') {
-                // Минус допустим только в начале числа
+                
                 if (i != 0) {
                     is_number = false;
                     break;
@@ -124,7 +118,7 @@ int evaluate_postfix(const char *postfix, double *result,
             }
         }
 
-        // Если это число
+        
         if (is_number) {
             double value = atof(token);
             if (!push_dstack(&stack, value)) {
@@ -132,9 +126,9 @@ int evaluate_postfix(const char *postfix, double *result,
                 return -1;
             }
         }
-        // Если это оператор
+ 
         else if (is_operator(token)) {
-            // Проверяем, достаточно ли операндов
+            
             if (is_dstack_empty(&stack)) {
                 if (error_msg) sprintf(error_msg,
                     "Error: insufficient operands for the operator %s", token);
@@ -161,7 +155,7 @@ int evaluate_postfix(const char *postfix, double *result,
 
             (*num_operations)++;
         }
-        // Неизвестный токен
+        
         else {
             if (error_msg) sprintf(error_msg,
                 "Error: unknown tocken '%s'", token);
@@ -171,7 +165,6 @@ int evaluate_postfix(const char *postfix, double *result,
         token = strtok(NULL, " \t\n");
     }
 
-    // Проверяем результат
     if (is_dstack_empty(&stack)) {
         if (error_msg) sprintf(error_msg, "Error: empty stack");
         return -1;
@@ -179,7 +172,6 @@ int evaluate_postfix(const char *postfix, double *result,
 
     *result = pop_dstack(&stack);
 
-    // Проверяем, что в стеке остался ровно один элемент
     if (!is_dstack_empty(&stack)) {
         if (error_msg) sprintf(error_msg,
             "Error: Several values remain in the stack");
