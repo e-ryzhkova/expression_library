@@ -1,5 +1,6 @@
 #include "ast.h"
 
+
 void constant_fold(ExprNode** node) {
     double num;
     if ((*node)->type == NODE_BINARY) {
@@ -16,10 +17,13 @@ void constant_fold(ExprNode** node) {
                 num = left_value - right_value;
             else if (bin == '*')
                 num = left_value * right_value;
-            else if (bin == '/')
-                num = left_value / right_value;
             else if (bin == '^')
                 num = pow(left_value, right_value);
+            else if (bin == '/')
+                if (right_value != 0)
+                    num = left_value / right_value;
+                else
+                    return;
             ExprNode* new_node = create_num_node(num);
             free_ast(*node);
             *node = new_node;
@@ -43,7 +47,7 @@ void constant_fold(ExprNode** node) {
         char* func_name = (*node)->data.function.func_name;
         ExprNode** args = (*node)->data.function.args;
         if (strcmp(func_name, "pow")) {
-            constant_fold(&((*node)->data.function.args[0]));
+          constant_fold(&((*node)->data.function.args[0]));
             if ((*node)->data.function.args[0]->type == NODE_NUMBER) {
                 double arg1 = (*node)->data.function.args[0]->data.number;
                 if (!strcmp(func_name, "sin"))
@@ -51,9 +55,15 @@ void constant_fold(ExprNode** node) {
                 else if (!strcmp(func_name, "cos"))
                     num = cos(arg1);
                 else if (!strcmp(func_name, "sqrt"))
-                    num = sqrt(arg1);
+                    if (arg1 >= 0)
+                        num = sqrt(arg1);
+                    else
+                        return;
                 else if (!strcmp(func_name, "ln"))
-                    num = log(arg1);
+                    if (arg1 > 0)
+                        num = log(arg1);
+                    else
+                        return;
                 ExprNode* new_node = create_num_node(num);
                 free_ast(*node);
                 *node = new_node;
@@ -74,4 +84,3 @@ void constant_fold(ExprNode** node) {
         }
     }
 }
-

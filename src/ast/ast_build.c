@@ -71,6 +71,7 @@ void free_ast(ExprNode* node) {
 
 
 
+
 char* my_strdup(const char* str) {
 
     int len = strlen(str) + 1;
@@ -97,26 +98,47 @@ ExprNode* build_ast_from_postfix(const char* postfix, char* error_msg) {
         }
         else if (!strcmp(token,check)) {
             if ((!strcmp(token, "sin") || !strcmp(token, "cos") ||
-                !strcmp(token, "sqrt") || !strcmp(token, "ln")) && (i >= 0)) {
-                arg_count = 1;
-                ExprNode** args = (ExprNode**)malloc(arg_count *sizeof(ExprNode*));
-                for (int j = arg_count-1; j >= 0; j--) {
-                    args[j] = stack[i];
-                    i--;
+                !strcmp(token, "sqrt") || !strcmp(token, "ln"))) {
+                if (i >= 0) {
+                    arg_count = 1;
+                    ExprNode** args = (ExprNode**)malloc(arg_count * sizeof(ExprNode*));
+                    for (int j = arg_count - 1; j >= 0; j--) {
+                        args[j] = stack[i];
+                        i--;
+                    }
+                    i++;
+                    stack[i] = create_func_node(my_strdup(token), arg_count, args);
                 }
-                i++;
-                stack[i] = create_func_node(my_strdup(token), arg_count, args);
+                else {
+                    strcpy(error_msg, "ERROR: not enough arguments");
+                    for (int j = 0; j < i; j++)
+                        free_ast(stack[j]);
+                    free(stack);
+                    free(copy);
+                    return NULL;
+                }
+
             }
 
-            else if (!strcmp(token, "pow") && (i >= 0)) {
-                arg_count = 2;
-                ExprNode** args = (ExprNode**)malloc(arg_count * sizeof(ExprNode*));
-                for (int j = arg_count-1; j >= 0; j--) {
-                    args[j] = stack[i];
-                    i--;
+            else if (!strcmp(token, "pow")) {
+                if (i >= 1) {
+                    arg_count = 2;
+                    ExprNode** args = (ExprNode**)malloc(arg_count * sizeof(ExprNode*));
+                    for (int j = arg_count - 1; j >= 0; j--) {
+                        args[j] = stack[i];
+                        i--;
+                    }
+                    i++;
+                    stack[i] = create_func_node(my_strdup(token), arg_count, args);
                 }
-                i++;
-                stack[i] = create_func_node(my_strdup(token), arg_count, args);
+                else {
+                    strcpy(error_msg, "ERROR: not enough arguments");
+                    for (int j = 0; j < i; j++)
+                        free_ast(stack[j]);
+                    free(stack);
+                    free(copy);
+                    return NULL;
+                }
             }
 
             else if (!(!strcmp(token, "sin") || !strcmp(token, "cos") ||
@@ -140,7 +162,7 @@ ExprNode* build_ast_from_postfix(const char* postfix, char* error_msg) {
                         stack[i] = create_var_node(my_strdup(token));
                     }
                     else {
-                        strcpy(error_msg, "incorrect entry");
+                        strcpy(error_msg, "ERROR: incorrect entry");
                         for (int j = 0; j < i; j++)
                             free_ast(stack[j]);
                         free(stack);
@@ -153,16 +175,24 @@ ExprNode* build_ast_from_postfix(const char* postfix, char* error_msg) {
         token = strtok(NULL, " ");
     }
     ExprNode* root = NULL;
-    if (i == 0)
+    if (i == 0) {
         root = stack[0];
-    else
-        strcpy(error_msg, "incorrect entry");
+        for (int j = 0; j < i; j++)
+            free_ast(stack[j]);
+        free(stack);
+        free(copy);
+        return root;
+    }
+    else {
+        strcpy(error_msg, "ERROR: incorrect entry");
+        for (int j = 0; j < i; j++)
+            free_ast(stack[j]);
+        free(stack);
+        free(copy);
+        return NULL;
+    }
+    
 
-    for (int j = 0; j < i; j++)
-        free_ast(stack[j]);
-    free(stack);
-    free(copy);
-    return root;
 }
 
 

@@ -12,7 +12,7 @@ double post_order(const ExprNode* node,
     char* error_msg) {
 
     if (error_msg[0] != '\0')
-        return 0.0;
+        return;
 
     double num = node->data.number;
     if (node->type == NODE_NUMBER)
@@ -22,8 +22,8 @@ double post_order(const ExprNode* node,
         for (int i = 0; var_table[i].name; i++)
             if (!(strcmp(var_table[i].name, node->data.var_name)))
                 return var_table[i].value;
-        strcpy(error_msg, "unknown variable");
-        return 0.0;
+        strcpy(error_msg, "ERROR: unknown variable");
+        return;
     }
 
     else if (node->type == NODE_BINARY) {
@@ -42,8 +42,8 @@ double post_order(const ExprNode* node,
             if (right_value != 0)
                 num = left_value / right_value;
             else {
-                strcpy(error_msg, "division by zero");
-                return 0.0; 
+                strcpy(error_msg, "ERROR: division by zero");
+                return;
             }
         }
         
@@ -78,15 +78,15 @@ double post_order(const ExprNode* node,
             if (arg1 >= 0)
                 num = sqrt(arg1);
             else {
-                strcpy(error_msg, "negative argument of the square root");
-                return 0.0;
+                strcpy(error_msg, "ERROR: negative argument of the square root");
+                return;
             }
         else if (!strcmp(func_name, "ln"))
             if (arg1 > 0)
                 num = log(arg1);
             else {
-                strcpy(error_msg, "non-positive argument of the logarithm");
-                return 0.0;
+                strcpy(error_msg, "ERROR: non-positive argument of the logarithm");
+                return;
             }
         else if (!strcmp(func_name, "pow")) {
             double arg2 = post_order(args[1], var_table, error_msg);
@@ -111,3 +111,6 @@ int evaluate_ast(const ExprNode* node,
     return 0;
 
 }
+
+
+
