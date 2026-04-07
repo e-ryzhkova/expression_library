@@ -140,39 +140,35 @@ ExprNode* build_ast_from_postfix(const char* postfix, char* error_msg) {
                     return NULL;
                 }
             }
-
-            else if (!(!strcmp(token, "sin") || !strcmp(token, "cos") ||
-                !strcmp(token, "sqrt") || !strcmp(token, "ln") || (!strcmp(token, "pow")))) {
-                if (strchr("+-*/^", token[0]) && (i >= 1)) {
+            else if (strchr("+-*/^", token[0]) && (i >= 1)) {
                     i--;
                     stack[i] = create_bin_node(token[0], stack[i], stack[i + 1]);
                 }
-                else if ((token[0] == 'n' || token[0] == 'p') && (i >= 0))
-                    stack[i] = create_un_node(token[0], stack[i]);
+            else if ((token[0] == 'n' || token[0] == 'p') && (i >= 0))
+                stack[i] = create_un_node(token[0], stack[i]);
+            else {
+                int valid = 1;
+                for (int j = 0; token[j]; j++)
+                    if (!((token[j] >= 'a' && token[j] <= 'z')
+                        || (token[j] >= 'A' && token[j] <= 'Z'))) {
+                        valid = 0;
+                        break;
+                    }
+                if (valid) {
+                    i++;
+                    stack[i] = create_var_node(my_strdup(token));
+                }
                 else {
-                    int valid = 1;
-                    for (int j = 0; token[j]; j++)
-                        if (!((token[j] >= 'a' && token[j] <= 'z')
-                            || (token[j] >= 'A' && token[j] <= 'Z'))) {
-                            valid = 0;
-                            break;
-                        }
-                    if (valid) {
-                        i++;
-                        stack[i] = create_var_node(my_strdup(token));
-                    }
-                    else {
-                        strcpy(error_msg, "ERROR: incorrect entry");
-                        for (int j = 0; j < i; j++)
-                            free_ast(stack[j]);
-                        free(stack);
-                        free(copy);
-                        return NULL;
-                    }
+                    strcpy(error_msg, "ERROR: incorrect entry");
+                    for (int j = 0; j < i; j++)
+                        free_ast(stack[j]);
+                    free(stack);
+                    free(copy);
+                    return NULL;
                 }
             }
         }
-        token = strtok(NULL, " ");
+    token = strtok(NULL, " ");
     }
     ExprNode* root = NULL;
     if (i == 0) {
