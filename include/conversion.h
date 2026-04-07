@@ -40,8 +40,8 @@ int infix_to_postfix(const char* infix, char* postfix, size_t postfix_len,
 * @param error_msg Буфер для сообщения об ошибке
 * @return 0 при успехе, -1 при ошибке (деление на ноль, недостаточно операндов)
 */
-
-double evaluate_postfix(const char* postfix, char* error_msg, long* num_operations);
+int evaluate_postfix(const char *postfix, double *result,
+                     char *error_msg, long *num_operations);
 
 /**
  * ЗАДАЧА 1.3: Проверка баланса скобок и базовой структуры выражения
