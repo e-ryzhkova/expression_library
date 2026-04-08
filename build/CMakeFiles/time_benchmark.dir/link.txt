@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/time_benchmark.dir/link.d CMakeFiles/time_benchmark.dir/benchmarks/time_benchmark.c.o -o time_benchmark  libexpression.a -lm

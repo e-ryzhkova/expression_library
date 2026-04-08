@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/test_ast.dir/link.d CMakeFiles/test_ast.dir/tests/test_ast.c.o -o test_ast  libexpression.a -lm

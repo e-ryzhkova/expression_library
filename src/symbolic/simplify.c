@@ -96,8 +96,7 @@ ExprNode* simplify(ExprNode* node) {
                     return temp;   
                 }  
 
-                if (right->type == NODE_NUMBER && right->data.number == 0){      
-                    ExprNode *left  = create_bin_node('*', df, create_bin_node('*', NULL, NULL)); 
+                if (right->type == NODE_NUMBER && right->data.number == 0){     
                     ExprNode *temp = node->data.binary.left;
 
                     node->data.binary.right = NULL;

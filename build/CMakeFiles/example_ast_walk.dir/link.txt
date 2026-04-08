@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/example_ast_walk.dir/link.d CMakeFiles/example_ast_walk.dir/examples/ast_walk.c.o -o example_ast_walk  libexpression.a -lm
