@@ -10,8 +10,6 @@ ExprNode* create_func_node(char* func_name, int arg_count,
     return node;
 }
 
-
-
 ExprNode* create_bin_node(char bin, ExprNode* left, 
     ExprNode* right) {
     ExprNode* node = malloc(sizeof(ExprNode));
@@ -21,7 +19,6 @@ ExprNode* create_bin_node(char bin, ExprNode* left,
     node->data.binary.right = right;
     return node;
 }
-
 
 ExprNode* create_un_node(char un, ExprNode* operand) {
     ExprNode* node = malloc(sizeof(ExprNode));
@@ -51,11 +48,11 @@ void free_ast(ExprNode* node) {
         case NODE_NUMBER:
             break;
         case NODE_VARIABLE:
-            free(node->data.var_name);
+            free(node->data.var_name);          //dynamic memory
             break;
         case NODE_UNARY:
-            free_ast(node->data.unary.operand);
-            break;
+            free_ast(node->data.unary.operand); //recursion
+            break;                              //exit from recursion
         case NODE_BINARY:
             free_ast(node->data.binary.left);
             free_ast(node->data.binary.right);
@@ -70,12 +67,10 @@ void free_ast(ExprNode* node) {
 }
 
 
-
+//safe copying of a string
 char* my_strdup(const char* str) {
-
     int len = strlen(str) + 1;
     char* copy = (char*)malloc(len*sizeof(char));
-
     strcpy(copy, str);
     return copy;
 }
@@ -85,13 +80,14 @@ char* my_strdup(const char* str) {
 ExprNode* build_ast_from_postfix(const char* postfix, char* error_msg) {
     int arg_count = 1;
     int i = -1;
-    char* copy = my_strdup(postfix);
-    ExprNode** stack = (ExprNode**)malloc(strlen(copy) * sizeof(ExprNode*));
-    char* token = strtok(copy, " ");
-    while (token != NULL) {
+    char* copy = my_strdup(postfix);        //copying a constant to change
+    ExprNode** stack = (ExprNode**)         //array of pointers for constructing a tree
+    malloc(strlen(copy) * sizeof(ExprNode*));
+    char* token = strtok(copy, " ");        //splitting a string into tokens
+    while (token != NULL) {                 //continue if there is another token
         char* check;
-        double num = strtod(token, &check);
-        if (*check == '\0') {
+        double num = strtod(token, &check); //Split a string and a number
+        if (*check == '\0') {               //checking the purity of a number
             i++;
             stack[i] = create_num_node(num);
         }
@@ -99,7 +95,8 @@ ExprNode* build_ast_from_postfix(const char* postfix, char* error_msg) {
             if ((!strcmp(token, "sin") || !strcmp(token, "cos") ||
                 !strcmp(token, "sqrt") || !strcmp(token, "ln")) && (i >= 0)) {
                 arg_count = 1;
-                ExprNode** args = (ExprNode**)malloc(arg_count *sizeof(ExprNode*));
+                ExprNode** args = (ExprNode**)
+                malloc(arg_count *sizeof(ExprNode*));
                 for (int j = arg_count-1; j >= 0; j--) {
                     args[j] = stack[i];
                     i--;
@@ -150,7 +147,7 @@ ExprNode* build_ast_from_postfix(const char* postfix, char* error_msg) {
                 }
             }
         }
-        token = strtok(NULL, " ");
+        token = strtok(NULL, " ");   //continue working with "copy"
     }
     ExprNode* root = NULL;
     if (i == 0)

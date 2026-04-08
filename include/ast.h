@@ -8,6 +8,8 @@
 #include <stdio.h>
 #include <math.h>
 
+
+//TASK 2.1: Structures for AST and node creation
 typedef enum { NODE_NUMBER, NODE_VARIABLE, NODE_UNARY, NODE_BINARY, NODE_FUNCTION } NodeType;
 
 typedef struct ExprNode {
@@ -44,9 +46,13 @@ ExprNode* create_un_node(char un, ExprNode* operand);
 ExprNode* create_func_node(char* func_name, int arg_count, ExprNode** args);
 void free_ast(ExprNode* node);
 
+
+//TASK 2.2: Constructing an AST from postfix notation
 ExprNode* build_ast_from_postfix(const char* postfix, char* error_msg);
 char* my_strdup(const char* str);
 
+
+//TASK 2.3: Computing AST with variables
 extern struct VARS vars[];
 double post_order(const ExprNode* node,
     const struct VARS *var_table,
@@ -55,9 +61,11 @@ int evaluate_ast(const ExprNode* node,
     const struct VARS *var_table,
     double* result, char* error_msg);
 
+//TASK 2.4: Converting AST to prefix notation
 int pre_recursive(const ExprNode* node, char* output, size_t size, int pos);
 int ast_to_prefix(const ExprNode* node, char* output, size_t size);
 
+//TASK 2.5: Simplifying constant subexpressions in AST (constant folding)
 void constant_fold(ExprNode** node);
 
 #endif
