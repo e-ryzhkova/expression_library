@@ -47,7 +47,7 @@ void free_ast(ExprNode* node);
 ExprNode* build_ast_from_postfix(const char* postfix, char* error_msg);
 char* my_strdup(const char* str);
 
-const struct VARS vars[];
+extern struct VARS vars[];
 double post_order(const ExprNode* node,
     const struct VARS *var_table,
     char* error_msg);
