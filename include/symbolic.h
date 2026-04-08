@@ -1,8 +1,12 @@
 #ifndef SYMBOLIC_H
 #define SYMBOLIC_H
 
-#include "ast.h"
 #include <stdbool.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+#include "ast.h"
 
 ExprNode* simplify(ExprNode *node);
 ExprNode* substitute(ExprNode *node, const char *var_name, double value);

@@ -74,4 +74,3 @@ void constant_fold(ExprNode** node) {
         }
     }
 }
-

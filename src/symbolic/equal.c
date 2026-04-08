@@ -1,5 +1,4 @@
 #include "symbolic.h"
-#include <string.h>
 
 bool expression_equal(ExprNode *a, ExprNode *b) {
     if (a == NULL && b == NULL)

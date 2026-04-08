@@ -1,7 +1,4 @@
-#include "ast.h"
 #include "symbolic.h"
-#include <string.h>
-#include <stdlib.h>
 
 ExprNode* simplify(ExprNode* node) {
     if (node == NULL)
@@ -99,7 +96,8 @@ ExprNode* simplify(ExprNode* node) {
                     return temp;   
                 }  
 
-                if (right->type == N                ExprNode *left  = create_bin_node('*', df, create_bin_node('*', NULL, NULL)); ODE_NUMBER && right->data.number == 0){
+                if (right->type == NODE_NUMBER && right->data.number == 0){      
+                    ExprNode *left  = create_bin_node('*', df, create_bin_node('*', NULL, NULL)); 
                     ExprNode *temp = node->data.binary.left;
 
                     node->data.binary.right = NULL;

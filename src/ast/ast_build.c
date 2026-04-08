@@ -46,6 +46,7 @@ ExprNode* create_num_node(double value) {
 }
 
 void free_ast(ExprNode* node) {
+    if (!node) return;
     switch (node->type) {
         case NODE_NUMBER:
             break;
@@ -67,6 +68,7 @@ void free_ast(ExprNode* node) {
             break;
     }
 }
+
 
 
 char* my_strdup(const char* str) {
@@ -162,7 +164,6 @@ ExprNode* build_ast_from_postfix(const char* postfix, char* error_msg) {
     free(copy);
     return root;
 }
-
 
 
 

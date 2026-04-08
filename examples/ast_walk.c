@@ -1,43 +1,64 @@
-#include "ast.h"
+#include "expression.h"
 
-int main() {
-    double res;
-    char output[8] = "";
-    char error_msg[256] = "";
-    const char* postfix = "1 2 +";
-    ExprNode* root = build_ast_from_postfix(postfix, error_msg);
-    if (!root)
-        printf("ERROR: %s\n", error_msg);
-    else {
-        int check1 = evaluate_ast(root, vars, &res, error_msg);
-        int check2 = ast_to_prefix(root, output, sizeof(output));
-        if (!check1) {
-            printf("res: %f\n", res);
-            printf("check2.3: %d\n", check1);
-        }
-        else {
-            printf("ERROR: %s\n", error_msg);
-            printf("check2.3: %d\n", check1);
-        }
-        printf("\n");
-        if (!check2) {
-            printf("output: %s\n", output);
-            printf("check2.4: %d\n", check2);
-        }
-        else {
-            printf("ERROR: OVERFLOW\n");
-            printf("check2.4: %d\n", check2);
-        }
-        printf("\n");
-        constant_fold(&root);
-        if (root->type == NODE_NUMBER) {
-            double const_res = root->data.number;
-            printf("const res: %f\n", const_res);
-        }
-        else
-            printf("no constant available");
+int main(void) {
+    ErrorInfo err;
+    Expression *expr;
+    char *infix = NULL;
+    char *prefix = NULL;
+
+    err.code = ERR_OK;
+    err.message[0] = '\0';
+
+    expr = expr_parse_infix("sin(3.14 / 2) + x", &err);
+    if (expr == NULL) {
+        printf("Parse error [%s]: %s\n",
+               expr_error_code_to_string(err.code),
+               err.message);
+        return 1;
     }
-    free_ast(root);
+
+    infix = expr_to_infix_string(expr, &err);
+    if (infix == NULL) {
+        printf("String conversion error [%s]: %s\n",
+               expr_error_code_to_string(err.code),
+               err.message);
+        expr_free(expr);
+        return 1;
+    }
+
+    prefix = expr_to_prefix_string(expr, &err);
+    if (prefix == NULL) {
+        printf("Prefix conversion error [%s]: %s\n",
+               expr_error_code_to_string(err.code),
+               err.message);
+        expr_string_free(infix);
+        expr_free(expr);
+        return 1;
+    }
+
+    printf("AST walk demo\n");
+    printf("-------------\n");
+    printf("Infix form : %s\n", infix);
+    printf("Prefix form: %s\n", prefix);
+
+    if (expr_visualize_dot(expr, "ast_walk.dot", &err) != 0) {
+        printf("DOT export error [%s]: %s\n",
+               expr_error_code_to_string(err.code),
+               err.message);
+        expr_string_free(prefix);
+        expr_string_free(infix);
+        expr_free(expr);
+        return 1;
+    }
+
+    printf("DOT file saved to: ast_walk.dot\n");
+    printf("You can render it with:\n");
+    printf("  dot -Tpng ast_walk.dot -o ast_walk.png\n");
+
+    expr_string_free(prefix);
+    expr_string_free(infix);
+    expr_free(expr);
+
     return 0;
 }
 

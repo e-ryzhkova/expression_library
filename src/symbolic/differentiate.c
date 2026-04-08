@@ -1,7 +1,4 @@
 #include "symbolic.h"
-#include <string.h>
-#include <math.h>
-#include <stdlib.h>
 
 ExprNode* differentiate(ExprNode *node, const char *var_name) {
     if (node == NULL)
