@@ -62,7 +62,7 @@ int check_expression_syntax(const char *expression, char *error_msg) {
                            (i == 0);
 
             if (!is_unary) {
-                printf_s("Consecutive operators '%c%c'\n", prev_ch, ch);
+                printf("Consecutive operators '%c%c'\n", prev_ch, ch);
                 return 0;
             }
         }
