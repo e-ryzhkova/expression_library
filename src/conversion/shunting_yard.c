@@ -1,10 +1,10 @@
-#include "conversion.h"
+#include "../../include/conversion.h"
 
 void init_stack(Stack *s) {
   s->top = -1;
 }
 
-bool is_empty(Stack *s) {
+int is_empty(Stack *s) {
   return s->top == -1;
 }
 
@@ -47,7 +47,7 @@ int get_associative(char op) {
   }
 }
 
-bool append_char(char *postfix, size_t postfix_len, char c, size_t *pos) {
+int append_char(char *postfix, size_t postfix_len, char c, size_t *pos) {
   if (*pos + 1 >= postfix_len) {
     return false;
   }

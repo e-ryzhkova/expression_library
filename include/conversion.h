@@ -19,21 +19,21 @@ typedef struct {
 } Stack;
 
 void init_stack(Stack *s);
-bool is_empty(Stack *s);
+int is_empty(Stack *s);
 char peek(Stack *s);
 void push(Stack *s, char c);
 char pop(Stack *s);
 int get_priority(char op);
 int get_associative(char op);
-bool append_char(char *postfix, size_t postfix_len, char c, size_t *pos);
+int append_char(char *postfix, size_t postfix_len, char c, size_t *pos);
 
 
 int infix_to_postfix(const char* infix, char* postfix, size_t postfix_len,
                      char* error_msg, long* num_operations);
 
-double evaluate_postfix(const char* postfix, char* error_msg, long* num_operations);
+int evaluate_postfix(const char* postfix, char* error_msg, long* num_operations);
 
-bool check_expression_syntax(const char *expression, char *error_msg);
+int check_expression_syntax(const char *expression, char *error_msg);
 
 int evaluate_infix(const char *expression, double *result,
                    char *error_msg, long *num_operations);

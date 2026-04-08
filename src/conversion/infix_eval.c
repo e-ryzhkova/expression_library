@@ -1,14 +1,5 @@
-#include "conversion.h"
+#include "../../include/conversion.h"
 
-typedef struct {
-  double values[MAX_STACK];
-  int top;
-} ValueStack;
-
-typedef struct {
-  char ops[MAX_STACK];
-  int top;
-} OpStack;
 
 void push_value(ValueStack *vs, double val) {
   vs->values[++vs->top] = val;

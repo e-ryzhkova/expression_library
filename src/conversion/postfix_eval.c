@@ -1,4 +1,4 @@
-#include "conversion.h"
+#include "../../include/conversion.h"
 
 
 typedef struct {
@@ -10,16 +10,16 @@ void init_dstack(DoubleStack *s) {
     s->top = -1;
 }
 
-bool is_dstack_empty(DoubleStack *s) {
+int is_dstack_empty(DoubleStack *s) {
     return s->top == -1;
 }
 
-bool push_dstack(DoubleStack *s, double value) {
+int push_dstack(DoubleStack *s, double value) {
     if (s->top < 99) {
         s->items[++s->top] = value;
-        return true;
+        return 1;
     }
-    return false;
+    return 0;
 }
 
 double pop_dstack(DoubleStack *s) {
@@ -37,13 +37,13 @@ double peek_dstack(DoubleStack *s) {
 }
 
 
-bool is_operator(const char *token) {
+int is_operator(const char *token) {
     return (strcmp(token, "+") == 0 || strcmp(token, "-") == 0 ||
             strcmp(token, "*") == 0 || strcmp(token, "/") == 0 ||
             strcmp(token, "^") == 0);
 }
 
-bool apply_operator(const char *op, double a, double b, double *result, char *error_msg) {
+int apply_operator(const char *op, double a, double b, double *result, char *error_msg) {
     if (strcmp(op, "+") == 0) {
         *result = a + b;
     } else if (strcmp(op, "-") == 0) {
@@ -53,16 +53,16 @@ bool apply_operator(const char *op, double a, double b, double *result, char *er
     } else if (strcmp(op, "/") == 0) {
         if (fabs(b) < 1e-12) {
             if (error_msg) sprintf(error_msg, "Error: division by zero");
-            return false;
+            return 0;
         }
         *result = a / b;
     } else if (strcmp(op, "^") == 0) {
         *result = pow(a, b);
     } else {
         if (error_msg) sprintf(error_msg, "Error: Uncnown operand %s", op);
-        return false;
+        return 0;
     }
-    return true;
+    return 1;
 }
 
 int evaluate_postfix(const char *postfix, double *result,
@@ -96,24 +96,24 @@ int evaluate_postfix(const char *postfix, double *result,
         }
 
        
-        bool is_number = true;
-        bool has_decimal_point = false;
+        int is_number = 1;
+        int has_decimal_point = 0;
 
         for (int i = 0; token[i] != '\0'; i++) {
             if (token[i] == '.') {
                 if (has_decimal_point) {
-                    is_number = false;
+                    is_number = 0;
                     break;
                 }
-                has_decimal_point = true;
+                has_decimal_point = 1;
             } else if (token[i] == '-') {
                 
                 if (i != 0) {
-                    is_number = false;
+                    is_number = 0;
                     break;
                 }
             } else if (!isdigit(token[i])) {
-                is_number = false;
+                is_number = 0;
                 break;
             }
         }
