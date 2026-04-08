@@ -31,7 +31,8 @@ int append_char(char *postfix, size_t postfix_len, char c, size_t *pos);
 int infix_to_postfix(const char* infix, char* postfix, size_t postfix_len,
                      char* error_msg, long* num_operations);
 
-int evaluate_postfix(const char* postfix, char* error_msg, long* num_operations);
+int evaluate_postfix(const char *postfix, double *result,
+                     char *error_msg, long *num_operations);
 
 int check_expression_syntax(const char *expression, char *error_msg);
 
