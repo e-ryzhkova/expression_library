@@ -64,7 +64,7 @@ void free_ast(ExprNode* node) {
             free(node->data.function.func_name);
             for (int i = 0; i < node->data.function.arg_count; i++)
                 free_ast(node->data.function.args[i]);
-            free_ast(node->data.function.args);
+            free(node->data.function.args);
             break;
     }
 }
