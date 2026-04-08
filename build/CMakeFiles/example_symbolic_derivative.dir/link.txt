@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/example_symbolic_derivative.dir/link.d CMakeFiles/example_symbolic_derivative.dir/examples/symbolic_derivative.c.o -o example_symbolic_derivative  libexpression.a -lm

@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/example_visualization_demo.dir/link.d CMakeFiles/example_visualization_demo.dir/examples/visualization_demo.c.o -o example_visualization_demo  libexpression.a -lm

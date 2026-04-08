@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/test_symbolic.dir/link.d CMakeFiles/test_symbolic.dir/tests/test_symbolic.c.o -o test_symbolic  libexpression.a -lm

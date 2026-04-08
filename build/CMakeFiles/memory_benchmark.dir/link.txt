@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/memory_benchmark.dir/link.d CMakeFiles/memory_benchmark.dir/benchmarks/memory_benchmark.c.o -o memory_benchmark  libexpression.a -lm

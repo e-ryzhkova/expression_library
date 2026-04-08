@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/example_benchmark_demo.dir/link.d CMakeFiles/example_benchmark_demo.dir/examples/benchmark_demo.c.o -o example_benchmark_demo  libexpression.a -lm

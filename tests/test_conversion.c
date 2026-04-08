@@ -1,5 +1,4 @@
-#include "../include/conversion.h"
-#include <stdio.h>
+#include "conversion.h"
 
 void shunting_yard_test() {
     char infix[] = "3+4*2/(1-5)";
@@ -22,7 +21,6 @@ void shunting_yard_test() {
 void syntax_check_tests() {
     char error_msg[256];
 
-    //  Корректное выражение
     const char* expr1 = "2 + 3 * (4 - 1)";
     if (check_expression_syntax(expr1, error_msg)) {
         printf("Ok Expression '%s' is valid\n", expr1);
@@ -30,7 +28,6 @@ void syntax_check_tests() {
         printf("Err Expression '%s' is invalid: %s\n", expr1, error_msg);
     }
 
-    //  Пустые скобки
     const char* expr2 = "2 + () * 3";
     if (check_expression_syntax(expr2, error_msg)) {
         printf("Ok Expression '%s' is valid\n", expr2);
@@ -38,7 +35,6 @@ void syntax_check_tests() {
         printf("Err Expression '%s' is invalid: %s\n", expr2, error_msg);
     }
 
-    // Два оператора подряд
     const char* expr3 = "2 +- 3";
     if (check_expression_syntax(expr3, error_msg)) {
         printf("Ok Expression '%s' is valid\n", expr3);
@@ -46,7 +42,6 @@ void syntax_check_tests() {
         printf("Err Expression '%s' is invalid: %s\n", expr3, error_msg);
     }
 
-    // Незакрытая скобка
     const char* expr4 = "(2 + 3 * 4";
     if (check_expression_syntax(expr4, error_msg)) {
         printf("Ok Expression '%s' is valid\n", expr4);
@@ -61,7 +56,6 @@ void syntax_check_tests() {
      long num_ops;
      double result;
 
-     // Пример 1: Простое выражение
      const char *expr1 = "3 + 4 * 2";
      if (evaluate_infix(expr1, &result, error_msg, &num_ops) == 0) {
          printf("%s = %.2f (Operations: %ld)\n", expr1, result, num_ops);
@@ -69,7 +63,6 @@ void syntax_check_tests() {
          printf("Error: %s\n", error_msg);
      }
 
-     // Пример 2: Со скобками
      const char *expr2 = "(3 + 4) * 2";
      if (evaluate_infix(expr2, &result, error_msg, &num_ops) == 0) {
          printf("%s = %.2f (Operations: %ld)\n", expr2, result, num_ops);
@@ -77,7 +70,6 @@ void syntax_check_tests() {
          printf("Error: %s\n", error_msg);
      }
 
-     // Пример 3: Сложное выражение
      const char *expr3 = "10 - 2 * 3 + (4 + 5) / 3";
      if (evaluate_infix(expr3, &result, error_msg, &num_ops) == 0) {
          printf("%s = %.2f (Operations: %ld)\n", expr3, result, num_ops);
@@ -85,7 +77,6 @@ void syntax_check_tests() {
          printf("Error: %s\n", error_msg);
      }
 
-     // Пример 4: С десятичными числами
      const char *expr4 = "2.5 * 3 + 1.5";
      if (evaluate_infix(expr4, &result, error_msg, &num_ops) == 0) {
          printf("%s = %.2f (Operations: %ld)\n", expr4, result, num_ops);
@@ -93,7 +84,6 @@ void syntax_check_tests() {
          printf("Error: %s\n", error_msg);
      }
 
-     // Пример 5: Вложенные скобки
      const char *expr5 = "((2 + 3) * (4 - 1)) / 5";
      if (evaluate_infix(expr5, &result, error_msg, &num_ops) == 0) {
          printf("%s = %.2f (Operations: %ld)\n", expr5, result, num_ops);
@@ -102,7 +92,7 @@ void syntax_check_tests() {
      }
 
      printf("POSTFIX EVAL TESTS\n");
-     // Тест 1: простое выражение
+
      char postfix1[] = "3 4 +";
      double result1;
      long ops1;
@@ -116,7 +106,6 @@ void syntax_check_tests() {
          printf("Error: %s\n\n", error1);
      }
 
-     // Тест 2: сложное выражение
      char postfix2[] = "3 4 2 * 1 5 - / +";
      double result2;
      long ops2;
@@ -130,7 +119,6 @@ void syntax_check_tests() {
          printf("Error: %s\n\n", error2);
      }
 
-     // Тест 3: выражение со степенью
      char postfix3[] = "2 3 ^";
      double result3;
      long ops3;
@@ -144,7 +132,6 @@ void syntax_check_tests() {
          printf("Error: %s\n\n", error3);
      }
 
-     // Тест 4: деление на ноль
      char postfix4[] = "5 0 /";
      double result4;
      long ops4;
@@ -158,7 +145,6 @@ void syntax_check_tests() {
          printf("Error: %s\n\n", error4);
      }
 
-     // Тест 5: недостаточно операндов
      char postfix5[] = "5 +";
      double result5;
      long ops5;

@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/example_basic_calc.dir/link.d CMakeFiles/example_basic_calc.dir/examples/basic_calc.c.o -o example_basic_calc  libexpression.a -lm

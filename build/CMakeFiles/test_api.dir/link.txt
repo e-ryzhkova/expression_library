@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/test_api.dir/link.d CMakeFiles/test_api.dir/tests/test_api.c.o -o test_api  libexpression.a -lm

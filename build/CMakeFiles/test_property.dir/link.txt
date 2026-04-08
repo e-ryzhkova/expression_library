@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/test_property.dir/link.d CMakeFiles/test_property.dir/tests/test_property.c.o -o test_property  libexpression.a -lm
