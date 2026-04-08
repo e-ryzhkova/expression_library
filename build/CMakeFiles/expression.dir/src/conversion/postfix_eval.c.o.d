@@ -1,7 +1,7 @@
 CMakeFiles/expression.dir/src/conversion/postfix_eval.c.o: \
  /home/grechka/projects/expression_library/src/conversion/postfix_eval.c \
  /usr/include/stdc-predef.h \
- /home/grechka/projects/expression_library/include/conversion.h \
+ /home/grechka/projects/expression_library/src/conversion/../../include/conversion.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stdbool.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stddef.h \
  /usr/include/stdio.h /usr/include/bits/libc-header-start.h \
