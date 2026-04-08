@@ -1,4 +1,8 @@
 
+#define_POSIX_C_SOURCE 199309L
+
+#include<time.h>
+
 #include "expression.h"
 #include "expression_core.h"
 

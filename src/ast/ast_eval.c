@@ -8,7 +8,7 @@ const struct VARS vars[] = {
 };
 
 double post_order(const ExprNode* node, 
-    const struct { char* name; double value; } *var_table, 
+    const struct VARS *var_table, 
     char* error_msg) {
 
     if (error_msg[0] != '\0')
@@ -99,7 +99,7 @@ double post_order(const ExprNode* node,
 }
 
 int evaluate_ast(const ExprNode* node, 
-    const struct { char* name; double value; } *var_table,
+    const struct VARS *var_table,
     double* result, char* error_msg) {
     if (error_msg[0] != '\0')
         return -1;
