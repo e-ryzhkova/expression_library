@@ -1,7 +1,6 @@
 #include "ast.h"
 
 int pre_recursive(const ExprNode* node, char* output, size_t size, int pos) {
-    char str[2048] = "";
     if (node->type == NODE_NUMBER) {
         double num = node->data.number;
         if (size > pos) {
