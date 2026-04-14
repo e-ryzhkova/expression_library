@@ -1,8 +1,9 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/memory_benchmark.dir/link.d"
-  "CMakeFiles/memory_benchmark.dir/benchmarks/memory_benchmark.c.o"
-  "CMakeFiles/memory_benchmark.dir/benchmarks/memory_benchmark.c.o.d"
-  "memory_benchmark"
+  "CMakeFiles/memory_benchmark.dir/benchmarks/memory_benchmark.c.obj"
+  "CMakeFiles/memory_benchmark.dir/benchmarks/memory_benchmark.c.obj.d"
+  "libmemory_benchmark.dll.a"
+  "memory_benchmark.exe"
+  "memory_benchmark.exe.manifest"
   "memory_benchmark.pdb"
 )
 

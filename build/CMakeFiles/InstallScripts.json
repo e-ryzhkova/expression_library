@@ -1,7 +1,7 @@
 {
 	"InstallScripts" : 
 	[
-		"/home/grechka/projects/expression_library/build/cmake_install.cmake"
+		"C:/university_projects/lab4/expression_library/build/cmake_install.cmake"
 	],
 	"Parallel" : false
 }

@@ -8,8 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/grechka/projects/expression_library/examples/benchmark_demo.c" "CMakeFiles/example_benchmark_demo.dir/examples/benchmark_demo.c.o" "gcc" "CMakeFiles/example_benchmark_demo.dir/examples/benchmark_demo.c.o.d"
-  "" "example_benchmark_demo" "gcc" "CMakeFiles/example_benchmark_demo.dir/link.d"
+  "C:/university_projects/lab4/expression_library/examples/benchmark_demo.c" "CMakeFiles/example_benchmark_demo.dir/examples/benchmark_demo.c.obj" "gcc" "CMakeFiles/example_benchmark_demo.dir/examples/benchmark_demo.c.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

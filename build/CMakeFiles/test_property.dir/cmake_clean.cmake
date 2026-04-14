@@ -1,8 +1,9 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/test_property.dir/link.d"
-  "CMakeFiles/test_property.dir/tests/test_property.c.o"
-  "CMakeFiles/test_property.dir/tests/test_property.c.o.d"
-  "test_property"
+  "CMakeFiles/test_property.dir/tests/test_property.c.obj"
+  "CMakeFiles/test_property.dir/tests/test_property.c.obj.d"
+  "libtest_property.dll.a"
+  "test_property.exe"
+  "test_property.exe.manifest"
   "test_property.pdb"
 )
 

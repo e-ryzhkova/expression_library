@@ -1,0 +1,605 @@
+Start testing: Apr 14 23:33 Новосибирское стандартное время
+----------------------------------------------------------
+1/5 Testing: test_conversion
+1/5 Test: test_conversion
+Command: "C:/university_projects/lab4/expression_library/build/test_conversion.exe"
+Directory: C:/university_projects/lab4/expression_library/build
+"test_conversion" start time: Apr 14 23:33 Новосибирское стандартное время
+Output:
+----------------------------------------------------------
+INFINIX EVAL TESTS
+3 + 4 * 2 = 11.00 (Operations: 2)
+(3 + 4) * 2 = 14.00 (Operations: 2)
+10 - 2 * 3 + (4 + 5) / 3 = 7.00 (Operations: 5)
+2.5 * 3 + 1.5 = 9.00 (Operations: 2)
+((2 + 3) * (4 - 1)) / 5 = 3.00 (Operations: 4)
+POSTFIX EVAL TESTS
+Postfix: 3 4 +
+Result: 7.00
+Operation counter: 1
+
+Postfix: 3 4 2 * 1 5 - / +
+Error: Error: division by zero
+
+Postfix: 2 3 ^
+Result: 8.00
+Operation counter: 1
+
+Postfix: 5 0 /
+Error: Error: division by zero
+
+Postfix: 5 +
+Error: Error: insufficient operands for the operator +
+
+SHUNTING YARD TESTS
+infinix: 3+4*2/(1-5)
+Postfix: 3 4 2 * 1 5 - / +
+Operation count: 4
+SYNTAX CHECK TESTS
+Ok Expression '2 + 3 * (4 - 1)' is valid
+Err Expression '2 + () * 3' is invalid: Empty parentheses '()' are not allowed
+Consecutive operators '+-'
+Err Expression '2 +- 3' is invalid: Empty parentheses '()' are not allowed
+Err Expression '(2 + 3 * 4' is invalid: Unmatched opening parenthesis '('
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"test_conversion" end time: Apr 14 23:33 Новосибирское стандартное время
+"test_conversion" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/5 Testing: test_ast
+2/5 Test: test_ast
+Command: "C:/university_projects/lab4/expression_library/build/test_ast.exe"
+Directory: C:/university_projects/lab4/expression_library/build
+"test_ast" start time: Apr 14 23:33 Новосибирское стандартное время
+Output:
+----------------------------------------------------------
+1 2 +
+
+ast_eval
+res: 3.000000
+check: 0
+
+ast_prefix
+output: + 1.000000 2.000000
+check: 0
+
+ast_constant_fold
+res: 3.000000
+
+
+
+5 3 -
+
+ast_eval
+res: 2.000000
+check: 0
+
+ast_prefix
+output: - 5.000000 3.000000
+check: 0
+
+ast_constant_fold
+res: 2.000000
+
+
+
+4 5 *
+
+ast_eval
+res: 20.000000
+check: 0
+
+ast_prefix
+output: * 4.000000 5.000000
+check: 0
+
+ast_constant_fold
+res: 20.000000
+
+
+
+10 2 /
+
+ast_eval
+res: 5.000000
+check: 0
+
+ast_prefix
+output: / 10.000000 2.000000
+check: 0
+
+ast_constant_fold
+res: 5.000000
+
+
+
+2 3 ^
+
+ast_eval
+res: 8.000000
+check: 0
+
+ast_prefix
+output: ^ 2.000000 3.000000
+check: 0
+
+ast_constant_fold
+res: 8.000000
+
+
+
+2 3 + 4 *
+
+ast_eval
+res: 20.000000
+check: 0
+
+ast_prefix
+output: * + 2.000000 3.000000 4.000000
+check: 0
+
+ast_constant_fold
+res: 20.000000
+
+
+
+8 2 3 * +
+
+ast_eval
+res: 14.000000
+check: 0
+
+ast_prefix
+output: + 8.000000 * 2.000000 3.000000
+check: 0
+
+ast_constant_fold
+res: 14.000000
+
+
+
+10 2 / 3 +
+
+ast_eval
+res: 8.000000
+check: 0
+
+ast_prefix
+output: + / 10.000000 2.000000 3.000000
+check: 0
+
+ast_constant_fold
+res: 8.000000
+
+
+
+2 3 ^ 4 *
+
+ast_eval
+res: 32.000000
+check: 0
+
+ast_prefix
+output: * ^ 2.000000 3.000000 4.000000
+check: 0
+
+ast_constant_fold
+res: 32.000000
+
+
+
+5 n
+
+ast_eval
+res: -5.000000
+check: 0
+
+ast_prefix
+output: n 5.000000
+check: 0
+
+ast_constant_fold
+res: -5.000000
+
+
+
+3 n 4 *
+
+ast_eval
+res: -12.000000
+check: 0
+
+ast_prefix
+output: * n 3.000000 4.000000
+check: 0
+
+ast_constant_fold
+res: -12.000000
+
+
+
+2 3 + n
+
+ast_eval
+res: -5.000000
+check: 0
+
+ast_prefix
+output: n + 2.000000 3.000000
+check: 0
+
+ast_constant_fold
+res: -5.000000
+
+
+
+x 2 *
+
+ast_eval
+res: 6.280000
+check: 0
+
+ast_prefix
+output: * x 2.000000
+check: 0
+
+ast_constant_fold
+ERROR: no constant available
+
+
+
+x y +
+
+ast_eval
+res: 5.850000
+check: 0
+
+ast_prefix
+output: + x y
+check: 0
+
+ast_constant_fold
+ERROR: no constant available
+
+
+
+x 5 * y +
+
+ast_eval
+res: 18.410000
+check: 0
+
+ast_prefix
+output: + * x 5.000000 y
+check: 0
+
+ast_constant_fold
+ERROR: no constant available
+
+
+
+x y * z +
+
+ast_eval
+res: 9.509400
+check: 0
+
+ast_prefix
+output: + * x y z
+check: 0
+
+ast_constant_fold
+ERROR: no constant available
+
+
+
+x 2 ^ y +
+
+ast_eval
+res: 12.569600
+check: 0
+
+ast_prefix
+output: + ^ x 2.000000 y
+check: 0
+
+ast_constant_fold
+ERROR: no constant available
+
+
+
+1 sin
+
+ast_eval
+res: 0.841471
+check: 0
+
+ast_prefix
+output: sin 1.000000
+check: 0
+
+ast_constant_fold
+res: 0.841471
+
+
+
+0 cos
+
+ast_eval
+res: 1.000000
+check: 0
+
+ast_prefix
+output: cos 0.000000
+check: 0
+
+ast_constant_fold
+res: 1.000000
+
+
+
+4 sqrt
+
+ast_eval
+res: 2.000000
+check: 0
+
+ast_prefix
+output: sqrt 4.000000
+check: 0
+
+ast_constant_fold
+res: 2.000000
+
+
+
+2.71828 ln
+
+ast_eval
+res: 0.999999
+check: 0
+
+ast_prefix
+output: ln 2.718280
+check: 0
+
+ast_constant_fold
+res: 0.999999
+
+
+
+2 3 pow
+
+ast_eval
+res: 8.000000
+check: 0
+
+ast_prefix
+output: pow 2.000000 3.000000
+check: 0
+
+ast_constant_fold
+res: 8.000000
+
+
+
+1 sin 2 cos +
+
+ast_eval
+res: 0.425324
+check: 0
+
+ast_prefix
+output: + sin 1.000000 cos 2.000000
+check: 0
+
+ast_constant_fold
+res: 0.425324
+
+
+
+2 3 pow 4 sqrt +
+
+ast_eval
+res: 10.000000
+check: 0
+
+ast_prefix
+output: + pow 2.000000 3.000000 sqrt 4.000000
+check: 0
+
+ast_constant_fold
+res: 10.000000
+
+
+
+x 2 ^ y 3 ^ + sqrt
+
+ast_eval
+res: 5.455466
+check: 0
+
+ast_prefix
+output: sqrt + ^ x 2.000000 ^ y 3.000000
+check: 0
+
+ast_constant_fold
+ERROR: no constant available
+
+
+
+2 3 + 4 * 5 -
+
+ast_eval
+res: 15.000000
+check: 0
+
+ast_prefix
+output: - * + 2.000000 3.000000 4.000000 5.000000
+check: 0
+
+ast_constant_fold
+res: 15.000000
+
+
+
+x 2 * y 3 * + z 4 * -
+
+ast_eval
+res: 10.410000
+check: 0
+
+ast_prefix
+output: - + * x 2.000000 * y 3.000000 * z 4.000000
+check: 0
+
+ast_constant_fold
+ERROR: no constant available
+
+
+
+0
+
+ast_eval
+res: 0.000000
+check: 0
+
+ast_prefix
+output: 0.000000
+check: 0
+
+ast_constant_fold
+res: 0.000000
+
+
+
+-5
+
+ast_eval
+res: -5.000000
+check: 0
+
+ast_prefix
+output: -5.000000
+check: 0
+
+ast_constant_fold
+res: -5.000000
+
+
+
+999999999999999999999.999999999999999
+
+ast_eval
+res: 1000000000000000000000.000000
+check: 0
+
+ast_prefix
+output: 1000000000000000000000.000000
+check: 0
+
+ast_constant_fold
+res: 1000000000000000000000.000000
+
+
+
+5 n 2 +
+
+ast_eval
+res: -3.000000
+<end of output>
+Test time =   1.15 sec
+----------------------------------------------------------
+Test Failed.
+"test_ast" end time: Apr 14 23:33 Новосибирское стандартное время
+"test_ast" time elapsed: 00:00:01
+----------------------------------------------------------
+
+3/5 Testing: test_symbolic
+3/5 Test: test_symbolic
+Command: "C:/university_projects/lab4/expression_library/build/test_symbolic.exe"
+Directory: C:/university_projects/lab4/expression_library/build
+"test_symbolic" start time: Apr 14 23:33 Новосибирское стандартное время
+Output:
+----------------------------------------------------------
+
+Tests passed: 14
+Tests failed: 0
+ALL TESTS OK
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"test_symbolic" end time: Apr 14 23:33 Новосибирское стандартное время
+"test_symbolic" time elapsed: 00:00:00
+----------------------------------------------------------
+
+4/5 Testing: test_api
+4/5 Test: test_api
+Command: "C:/university_projects/lab4/expression_library/build/test_api.exe"
+Directory: C:/university_projects/lab4/expression_library/build
+"test_api" start time: Apr 14 23:33 Новосибирское стандартное время
+Output:
+----------------------------------------------------------
+=== Running API tests ===
+
+[ OK ] parse_infix(NULL)
+[ OK ] parse_infix NULL error code
+[ OK ] evaluate NULL expr
+[ OK ] evaluate NULL result
+[ OK ] simplify NULL
+[ OK ] differentiate NULL
+[ OK ] parse simple expression
+[ OK ] evaluate simple expression
+[ OK ] result is not zero
+[ OK ] parse for string conversion
+[ OK ] infix string not NULL
+Infix: (1 + 2)
+[ OK ] prefix string not NULL
+Prefix: + 1 2
+[FAIL] parse for simplify
+[ OK ] parse for visualization
+[ OK ] visualize dot success
+
+=== Tests finished ===
+SOME TESTS FAILED
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Failed.
+"test_api" end time: Apr 14 23:33 Новосибирское стандартное время
+"test_api" time elapsed: 00:00:00
+----------------------------------------------------------
+
+5/5 Testing: test_property
+5/5 Test: test_property
+Command: "C:/university_projects/lab4/expression_library/build/test_property.exe"
+Directory: C:/university_projects/lab4/expression_library/build
+"test_property" start time: Apr 14 23:33 Новосибирское стандартное время
+Output:
+----------------------------------------------------------
+=== Running property tests API checks ===
+
+[ OK ] run_property_tests(0) should fail
+[ OK ] run_property_tests(0) should set ERR_INVALID_ARG
+[OK] Property tests passed (5 tests)
+[ OK ] run_property_tests(5) should pass
+[ OK ] successful property test run should keep ERR_OK
+[OK] Property tests passed (20 tests)
+[ OK ] run_property_tests(20) should pass
+[ OK ] medium property run should keep ERR_OK
+
+=== Property test checks finished ===
+ALL TESTS PASSED
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"test_property" end time: Apr 14 23:33 Новосибирское стандартное время
+"test_property" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Apr 14 23:33 Новосибирское стандартное время

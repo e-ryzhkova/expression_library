@@ -8,8 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/grechka/projects/expression_library/benchmarks/memory_benchmark.c" "CMakeFiles/memory_benchmark.dir/benchmarks/memory_benchmark.c.o" "gcc" "CMakeFiles/memory_benchmark.dir/benchmarks/memory_benchmark.c.o.d"
-  "" "memory_benchmark" "gcc" "CMakeFiles/memory_benchmark.dir/link.d"
+  "C:/university_projects/lab4/expression_library/benchmarks/memory_benchmark.c" "CMakeFiles/memory_benchmark.dir/benchmarks/memory_benchmark.c.obj" "gcc" "CMakeFiles/memory_benchmark.dir/benchmarks/memory_benchmark.c.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

@@ -1,1 +1,3 @@
-/usr/bin/cc -Wl,--dependency-file=CMakeFiles/test_ast.dir/link.d CMakeFiles/test_ast.dir/tests/test_ast.c.o -o test_ast  libexpression.a -lm
+"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\test_ast.dir/objects.a
+C:\msys64\ucrt64\bin\ar.exe qc CMakeFiles\test_ast.dir/objects.a @CMakeFiles\test_ast.dir\objects1.rsp
+C:\msys64\ucrt64\bin\gcc.exe -Wl,--whole-archive CMakeFiles\test_ast.dir/objects.a -Wl,--no-whole-archive -o test_ast.exe -Wl,--out-implib,libtest_ast.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\test_ast.dir\linkLibs.rsp

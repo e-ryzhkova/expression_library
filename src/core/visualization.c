@@ -3,7 +3,7 @@
 #include "expression_core.h"
 #include "ast.h"
 
-#define EXPR_STRING_CAPACITY 4096
+#define EXPR_STRING_CAPACITY 65536
 
 typedef struct {
     char *data;
@@ -372,4 +372,20 @@ int expr_ast_export_dot(const ExprNode *root, const char *filename, ErrorInfo *e
     }
 
     return 0;
+}
+
+int expr_visualize_dot(const Expression *expr, const char *filename, ErrorInfo *err) {
+    expr_error_clear(err);
+
+    if (expr == NULL) {
+        expr_error_set(err, ERR_INVALID_ARG, "expression is NULL");
+        return -1;
+    }
+
+    if (expr->root == NULL) {
+        expr_error_set(err, ERR_INVALID_ARG, "expression root is NULL");
+        return -1;
+    }
+
+    return expr_ast_export_dot(expr->root, filename, err);
 }

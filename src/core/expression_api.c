@@ -5,6 +5,7 @@
 #include "ast.h"
 #include "symbolic.h"
 
+
 #define EXPR_LOCAL_ERROR_SIZE 256
 #define EXPR_POSTFIX_BUFFER_SIZE 4096
 #define EXPR_STRING_BUFFER_SIZE 4096
@@ -133,10 +134,7 @@ int expr_evaluate(const Expression *expr,
 
     (void)var_count;
 
-    rc = evaluate_ast(expr->root,
-                      (const struct {char *name; double value;} *)vars,
-                      result,
-                      internal_error);
+    rc = evaluate_ast(expr->root, vars, result, internal_error);
 
     if (rc != 0) {
         expr_copy_internal_error(err, internal_error);
@@ -147,7 +145,6 @@ int expr_evaluate(const Expression *expr,
 }
 
 Expression* expr_simplify(const Expression *expr, ErrorInfo *err) {
-    ExprNode *copy_root = NULL;
     ExprNode *simplified_root = NULL;
     Expression *new_expr = NULL;
 
@@ -157,15 +154,15 @@ Expression* expr_simplify(const Expression *expr, ErrorInfo *err) {
         return NULL;
     }
 
-    copy_root = expr_clone_ast(expr->root);
-    if (copy_root == NULL) {
-        expr_error_set(err, ERR_MEMORY, "failed to clone AST for simplify");
-        return NULL;
-    }
+    // copy_root = expr_clone_ast(expr->root);
+    // if (copy_root == NULL) {
+    //     expr_error_set(err, ERR_MEMORY, "failed to clone AST for simplify");
+    //     return NULL;
+    // }
 
-    simplified_root = simplify(copy_root);
+    simplified_root = simplify(expr->root);
     if (simplified_root == NULL) {
-        expr_free_ast(copy_root);
+        // expr_free_ast(copy_root);
         expr_error_set(err, ERR_INTERNAL, "simplify returned NULL");
         return NULL;
     }
@@ -181,7 +178,6 @@ Expression* expr_simplify(const Expression *expr, ErrorInfo *err) {
 }
 
 Expression* expr_differentiate(const Expression *expr, const char *var, ErrorInfo *err) {
-    ExprNode *copy_root = NULL;
     ExprNode *diff_root = NULL;
     Expression *new_expr = NULL;
 
@@ -195,15 +191,8 @@ Expression* expr_differentiate(const Expression *expr, const char *var, ErrorInf
         return NULL;
     }
 
-    copy_root = expr_clone_ast(expr->root);
-    if (copy_root == NULL) {
-        expr_error_set(err, ERR_MEMORY, "failed to clone AST for differentiation");
-        return NULL;
-    }
-
-    diff_root = differentiate(copy_root, var);
+    diff_root = differentiate(expr->root, var);
     if (diff_root == NULL) {
-        expr_free_ast(copy_root);
         expr_error_set(err, ERR_INTERNAL, "differentiate returned NULL");
         return NULL;
     }

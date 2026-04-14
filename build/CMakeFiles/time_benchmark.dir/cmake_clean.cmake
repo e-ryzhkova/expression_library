@@ -1,8 +1,9 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/time_benchmark.dir/link.d"
-  "CMakeFiles/time_benchmark.dir/benchmarks/time_benchmark.c.o"
-  "CMakeFiles/time_benchmark.dir/benchmarks/time_benchmark.c.o.d"
-  "time_benchmark"
+  "CMakeFiles/time_benchmark.dir/benchmarks/time_benchmark.c.obj"
+  "CMakeFiles/time_benchmark.dir/benchmarks/time_benchmark.c.obj.d"
+  "libtime_benchmark.dll.a"
+  "time_benchmark.exe"
+  "time_benchmark.exe.manifest"
   "time_benchmark.pdb"
 )
 

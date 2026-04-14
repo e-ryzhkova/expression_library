@@ -12,7 +12,7 @@ int main(void) {
     err.code = ERR_OK;
     err.message[0] = '\0';
 
-    expr = expr_parse_infix("x^2 + 2*x", &err);
+    expr = expr_parse_postfix("x 2 ^ 2 x * +", &err);
     if (expr == NULL) {
         printf("Parse error [%s]: %s\n",
                expr_error_code_to_string(err.code),

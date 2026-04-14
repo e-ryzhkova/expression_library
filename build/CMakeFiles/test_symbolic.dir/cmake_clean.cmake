@@ -1,8 +1,9 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/test_symbolic.dir/link.d"
-  "CMakeFiles/test_symbolic.dir/tests/test_symbolic.c.o"
-  "CMakeFiles/test_symbolic.dir/tests/test_symbolic.c.o.d"
-  "test_symbolic"
+  "CMakeFiles/test_symbolic.dir/tests/test_symbolic.c.obj"
+  "CMakeFiles/test_symbolic.dir/tests/test_symbolic.c.obj.d"
+  "libtest_symbolic.dll.a"
+  "test_symbolic.exe"
+  "test_symbolic.exe.manifest"
   "test_symbolic.pdb"
 )
 

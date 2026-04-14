@@ -1,0 +1,52 @@
+=== time_benchmark ===
+=== Time Benchmark ===
+
+Expression       : 3 + 4 * 2 / (1 - 5)
+Iterations       : 1000
+Parse time (ms)  : 0.948800
+Eval time (ms)   : 0.032700
+Operations count : 1000
+Memory used      : 0 bytes
+
+Expression       : 2 ^ 3 + 4 * 5 - 6 / 2
+Iterations       : 1000
+Parse time (ms)  : 1.168100
+Eval time (ms)   : 0.048600
+Operations count : 1000
+Memory used      : 0 bytes
+
+Expression       : (1 + 2) * (3 + 4) * (5 - 2)
+Iterations       : 1000
+Parse time (ms)  : 1.149200
+Eval time (ms)   : 0.035200
+Operations count : 1000
+Memory used      : 0 bytes
+
+Expression: sin(3.14 / 2) + cos(0)
+Error [ERR_INTERNAL]: Unknown symbol: s
+
+Expression: x^2 + 2*x + 1
+Error [ERR_INTERNAL]: Unknown symbol: x
+
+
+=== memory_benchmark ===
+=== Memory Benchmark ===
+
+Expression  : 1+2
+Iterations  : 500
+Memory used : 0 bytes
+
+Expression  : 3 + 4 * 2 / (1 - 5)
+Iterations  : 500
+Memory used : 0 bytes
+
+Expression  : (1 + 2) * (3 + 4) * (5 - 2)
+Iterations  : 500
+Memory used : 0 bytes
+
+Expression: x^2 + 2*x + 1
+Error [ERR_INTERNAL]: Unknown symbol: x
+
+Expression: sin(x) + cos(x) + sqrt(4)
+Error [ERR_INTERNAL]: Unknown symbol: s
+

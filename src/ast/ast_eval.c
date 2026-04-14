@@ -1,6 +1,6 @@
 #include "ast.h"
 
-const struct VARS vars[] = {
+const ExprVariable vars[] = {
     {"x", 3.14},
     {"y", 2.71},
     {"z", 1.0},
@@ -8,7 +8,7 @@ const struct VARS vars[] = {
 };
 
 double post_order(const ExprNode* node, 
-    const struct VARS *var_table, 
+    const ExprVariable *var_table, 
     char* error_msg) {
 
     if (error_msg[0] != '\0')
@@ -99,12 +99,12 @@ double post_order(const ExprNode* node,
 }
 
 int evaluate_ast(const ExprNode* node, 
-    const struct VARS *var_table,
+    const ExprVariable *vars,
     double* result, char* error_msg) {
     if (error_msg[0] != '\0')
         return -1;
     else {
-        *result = post_order(node, var_table, error_msg);
+        *result = post_order(node, vars, error_msg);
         if (error_msg[0] != '\0')
             return -1;
     }

@@ -13,7 +13,7 @@ mkdir -p "$BUILD_DIR"
 cd "$BUILD_DIR"
 
 cmake ..
-make
+mingw32-make
 
 ctest --output-on-failure
 

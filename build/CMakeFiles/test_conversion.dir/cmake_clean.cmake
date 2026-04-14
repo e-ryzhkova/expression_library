@@ -1,8 +1,9 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/test_conversion.dir/link.d"
-  "CMakeFiles/test_conversion.dir/tests/test_conversion.c.o"
-  "CMakeFiles/test_conversion.dir/tests/test_conversion.c.o.d"
-  "test_conversion"
+  "CMakeFiles/test_conversion.dir/tests/test_conversion.c.obj"
+  "CMakeFiles/test_conversion.dir/tests/test_conversion.c.obj.d"
+  "libtest_conversion.dll.a"
+  "test_conversion.exe"
+  "test_conversion.exe.manifest"
   "test_conversion.pdb"
 )
 

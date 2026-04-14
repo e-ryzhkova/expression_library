@@ -61,6 +61,13 @@ int main() {
             printf("%s\n", error_msg);
         }
         else {
+            const ExprVariable vars[] = {
+                        {"x", 3.14},
+                        {"y", 2.71},
+                        {"z", 1.0},
+                        {NULL, 0.0}
+                    };
+
             int check1 = evaluate_ast(root, vars, &res, error_msg);
             int check2 = ast_to_prefix(root, output, sizeof(output));
             if (!check1) {

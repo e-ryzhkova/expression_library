@@ -1,8 +1,9 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/test_api.dir/link.d"
-  "CMakeFiles/test_api.dir/tests/test_api.c.o"
-  "CMakeFiles/test_api.dir/tests/test_api.c.o.d"
-  "test_api"
+  "CMakeFiles/test_api.dir/tests/test_api.c.obj"
+  "CMakeFiles/test_api.dir/tests/test_api.c.obj.d"
+  "libtest_api.dll.a"
+  "test_api.exe"
+  "test_api.exe.manifest"
   "test_api.pdb"
 )
 

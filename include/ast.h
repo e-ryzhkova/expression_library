@@ -3,6 +3,7 @@
 
 #define _CRT_SECURE_NO_WARNINGS
 
+#include "expression_types.h"
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -53,12 +54,12 @@ char* my_strdup(const char* str);
 
 
 //TASK 2.3: Computing AST with variables
-extern struct VARS vars[];
+// extern struct VARS vars[];
 double post_order(const ExprNode* node,
-    const struct VARS *var_table,
+    const ExprVariable *var_table,
     char* error_msg);
 int evaluate_ast(const ExprNode* node,
-    const struct VARS *var_table,
+    const ExprVariable *vars,
     double* result, char* error_msg);
 
 //TASK 2.4: Converting AST to prefix notation

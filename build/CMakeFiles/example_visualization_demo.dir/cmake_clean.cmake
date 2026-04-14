@@ -1,9 +1,10 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/example_visualization_demo.dir/link.d"
-  "CMakeFiles/example_visualization_demo.dir/examples/visualization_demo.c.o"
-  "CMakeFiles/example_visualization_demo.dir/examples/visualization_demo.c.o.d"
-  "example_visualization_demo"
+  "CMakeFiles/example_visualization_demo.dir/examples/visualization_demo.c.obj"
+  "CMakeFiles/example_visualization_demo.dir/examples/visualization_demo.c.obj.d"
+  "example_visualization_demo.exe"
+  "example_visualization_demo.exe.manifest"
   "example_visualization_demo.pdb"
+  "libexample_visualization_demo.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.

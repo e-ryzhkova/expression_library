@@ -8,8 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/grechka/projects/expression_library/examples/ast_walk.c" "CMakeFiles/example_ast_walk.dir/examples/ast_walk.c.o" "gcc" "CMakeFiles/example_ast_walk.dir/examples/ast_walk.c.o.d"
-  "" "example_ast_walk" "gcc" "CMakeFiles/example_ast_walk.dir/link.d"
+  "C:/university_projects/lab4/expression_library/examples/ast_walk.c" "CMakeFiles/example_ast_walk.dir/examples/ast_walk.c.obj" "gcc" "CMakeFiles/example_ast_walk.dir/examples/ast_walk.c.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

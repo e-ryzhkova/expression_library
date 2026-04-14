@@ -1,10 +1,7 @@
-
-#define_POSIX_C_SOURCE 199309L
-
 #include<time.h>
 
-#include "expression.h"
-#include "expression_core.h"
+#include "../../include/expression.h"
+#include "../../include/expression_core.h"
 
 static double time_diff_ms(struct timespec start, struct timespec end) {
     double sec = (double)(end.tv_sec - start.tv_sec);

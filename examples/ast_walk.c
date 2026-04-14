@@ -9,7 +9,7 @@ int main(void) {
     err.code = ERR_OK;
     err.message[0] = '\0';
 
-    expr = expr_parse_infix("sin(3.14 / 2) + x", &err);
+    expr = expr_parse_infix("3+4*2/(1-5)", &err);
     if (expr == NULL) {
         printf("Parse error [%s]: %s\n",
                expr_error_code_to_string(err.code),

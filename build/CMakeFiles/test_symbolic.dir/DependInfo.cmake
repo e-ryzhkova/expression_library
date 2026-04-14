@@ -8,8 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/grechka/projects/expression_library/tests/test_symbolic.c" "CMakeFiles/test_symbolic.dir/tests/test_symbolic.c.o" "gcc" "CMakeFiles/test_symbolic.dir/tests/test_symbolic.c.o.d"
-  "" "test_symbolic" "gcc" "CMakeFiles/test_symbolic.dir/link.d"
+  "C:/university_projects/lab4/expression_library/tests/test_symbolic.c" "CMakeFiles/test_symbolic.dir/tests/test_symbolic.c.obj" "gcc" "CMakeFiles/test_symbolic.dir/tests/test_symbolic.c.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

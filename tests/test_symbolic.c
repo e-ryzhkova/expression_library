@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-=======
->>>>>>> 2629d7066ccb15e203e30b5706ecb6a4df5492ba
 #include "symbolic.h"
 
 int tests_passed = 0;
@@ -28,10 +22,6 @@ ExprNode* powe(ExprNode *a, ExprNode *b) { return create_bin_node('^', a, b); }
 
 int main() {
 
-<<<<<<< HEAD
-    // simlify tests
-=======
->>>>>>> 2629d7066ccb15e203e30b5706ecb6a4df5492ba
     ExprNode *s1 = simplify(add(var("x"), num(0)));
     check(s1->type == NODE_VARIABLE, "simplify: x + 0 → x");
 
@@ -44,11 +34,6 @@ int main() {
     ExprNode *s4 = simplify(add(num(2), num(3)));
     check(s4->type == NODE_NUMBER && s4->data.number == 5, "simplify: 2 + 3 → 5");
 
-<<<<<<< HEAD
-
-    // substitute tests
-=======
->>>>>>> 2629d7066ccb15e203e30b5706ecb6a4df5492ba
     ExprNode *sub1 = substitute(add(var("x"), num(3)), "x", 10);
     check(sub1->type == NODE_BINARY &&
           sub1->data.binary.left->type == NODE_NUMBER &&
@@ -60,12 +45,6 @@ int main() {
           sub2->data.binary.right->data.number == 5,
           "substitute: y * x, x=5");
 
-<<<<<<< HEAD
-   
-    // differentiate tests
-=======
-
->>>>>>> 2629d7066ccb15e203e30b5706ecb6a4df5492ba
     ExprNode *d1 = differentiate(var("x"), "x");
     check(d1->type == NODE_NUMBER && d1->data.number == 1, "differentiate: d/dx x = 1");
 
@@ -79,10 +58,6 @@ int main() {
     check(d4->type == NODE_BINARY, "differentiate: d/dx (x * x)");
 
 
-<<<<<<< HEAD
-    // expression_equal tests
-=======
->>>>>>> 2629d7066ccb15e203e30b5706ecb6a4df5492ba
     ExprNode *e1 = add(var("x"), var("y"));
     ExprNode *e2 = add(var("y"), var("x"));
     check(expression_equal(e1, e2), "equal: x + y == y + x");
@@ -99,10 +74,6 @@ int main() {
     ExprNode *e8 = sub(var("y"), var("x"));
     check(!expression_equal(e7, e8), "equal: x - y != y - x");
 
-<<<<<<< HEAD
-    // summary
-=======
->>>>>>> 2629d7066ccb15e203e30b5706ecb6a4df5492ba
     printf("\nTests passed: %d\n", tests_passed);
     printf("Tests failed: %d\n", tests_failed);
 
@@ -111,8 +82,3 @@ int main() {
 
     return 0;
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 2629d7066ccb15e203e30b5706ecb6a4df5492ba
-

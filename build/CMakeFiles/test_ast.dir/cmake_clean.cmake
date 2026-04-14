@@ -1,8 +1,9 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/test_ast.dir/link.d"
-  "CMakeFiles/test_ast.dir/tests/test_ast.c.o"
-  "CMakeFiles/test_ast.dir/tests/test_ast.c.o.d"
-  "test_ast"
+  "CMakeFiles/test_ast.dir/tests/test_ast.c.obj"
+  "CMakeFiles/test_ast.dir/tests/test_ast.c.obj.d"
+  "libtest_ast.dll.a"
+  "test_ast.exe"
+  "test_ast.exe.manifest"
   "test_ast.pdb"
 )
 

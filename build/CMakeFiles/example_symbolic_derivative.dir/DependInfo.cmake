@@ -8,8 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/grechka/projects/expression_library/examples/symbolic_derivative.c" "CMakeFiles/example_symbolic_derivative.dir/examples/symbolic_derivative.c.o" "gcc" "CMakeFiles/example_symbolic_derivative.dir/examples/symbolic_derivative.c.o.d"
-  "" "example_symbolic_derivative" "gcc" "CMakeFiles/example_symbolic_derivative.dir/link.d"
+  "C:/university_projects/lab4/expression_library/examples/symbolic_derivative.c" "CMakeFiles/example_symbolic_derivative.dir/examples/symbolic_derivative.c.obj" "gcc" "CMakeFiles/example_symbolic_derivative.dir/examples/symbolic_derivative.c.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

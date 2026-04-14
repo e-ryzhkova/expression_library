@@ -14,7 +14,7 @@ void shunting_yard_test() {
         printf("Postfix: %s\n", postfix);
         printf("Operation count: %ld\n", num_operations);
     } else {
-        printf("Ошибка: %s\n", error_msg);
+        printf("Error: %s\n", error_msg);
     }
 }
 

@@ -47,10 +47,10 @@ void expr_free_ast(ExprNode *root) {
     free_ast(root);
 }
 
-ExprNode* expr_clone_ast(const ExprNode *root) {
-    if (root == NULL) {
-        return NULL;
-    }
+// // ExprNode* expr_clone_ast(const ExprNode *root) {
+// //     if (root == NULL) {
+// //         return NULL;
+// //     }
 
-    return clone_ast(root);
-}
+// //     return clone_ast(root);
+// }

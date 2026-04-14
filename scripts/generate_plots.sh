@@ -14,7 +14,7 @@ mkdir -p "$BUILD_DIR"
 cd "$BUILD_DIR"
 
 cmake ..
-make
+mingw32-make
 
 {
     echo "=== time_benchmark ==="
